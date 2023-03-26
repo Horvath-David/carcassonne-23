@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://bllla0pfpwlep"]
+
+[ext_resource type="Texture2D" uid="uid://buyklt4pbwrym" path="res://assets/frame.png" id="1_3u620"]
+[ext_resource type="Script" path="res://scripts/utils/ClickHandler.cs" id="2_k00sc"]
+[ext_resource type="Script" path="res://scripts/EmptyFrame.cs" id="2_u2nd2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8y5d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0nw6r"]
+
+[sub_resource type="Theme" id="Theme_4peob"]
+Button/styles/hover = SubResource("StyleBoxEmpty_p8y5d")
+Button/styles/normal = SubResource("StyleBoxEmpty_0nw6r")
+
+[node name="EmptyFrame" type="Sprite2D"]
+scale = Vector2(0.098, 0.098)
+texture = ExtResource("1_3u620")
+script = ExtResource("2_u2nd2")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+theme = SubResource("Theme_4peob")
+script = ExtResource("2_k00sc")

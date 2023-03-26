@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0ua5kvxivf26"]
+
+[ext_resource type="PackedScene" uid="uid://dlxgnsvxnvtqu" path="res://scenes/game_scene.tscn" id="1_td3f1"]
+[ext_resource type="PackedScene" uid="uid://qh0nhssqlu3h" path="res://scenes/ui_scene.tscn" id="2_pg17a"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameScene" parent="." instance=ExtResource("1_td3f1")]
+
+[node name="UIScene" parent="." instance=ExtResource("2_pg17a")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.8
+anchor_bottom = 16.2

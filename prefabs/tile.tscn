@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cra7cbgu0vdrg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_op0pl"]
+load_path = "res://.godot/imported/st.jpg-966ea758ab27900e17f5ff39a5bbc685.ctex"
+
+[node name="Tile" type="Sprite2D"]
+scale = Vector2(0.098, 0.098)
+texture = SubResource("CompressedTexture2D_op0pl")
