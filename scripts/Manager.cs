@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using System.Collections.Generic;
 
@@ -15,7 +16,8 @@ public partial class Manager : Node2D
     
     public static List<Tile> addBuffer = new List<Tile>();
     public static List<(int X, int Y)> emptyPlaceBuffer = new List<(int X, int Y)>();
-    
+
+    public static int rotation = 0;
 
     PackedScene tilePrefab = GD.Load<PackedScene>("res://prefabs/tile.tscn");
     PackedScene emptyFrame;
@@ -54,6 +56,7 @@ public partial class Manager : Node2D
             var instance = tilePrefab.Instantiate() as Sprite2D;
             instance.Set("position", new Vector2(tile.pos.X * 100, -tile.pos.Y * 100));
             instance.Texture = GD.Load<Texture2D>(tile.type.path);
+            instance.Rotation = (float)(Math.PI / 180f) * tile.rotation * 90f;
             boardNode.AddChild(instance);
         }
         addBuffer = new List<Tile>();
@@ -96,6 +99,20 @@ public partial class Manager : Node2D
             emptyPlaceBuffer.Add((tile.pos.X, tile.pos.Y - 1));
         }
         gameState.ChooseNextTile();
+
+        rotation = 0;
+    }
+
+    public static void ChangeRotation(int rotation = -1) {
+        if (rotation < 0 || rotation > 3) {
+            Manager.rotation++;
+            if (Manager.rotation == 4) Manager.rotation = 0;
+        }
+        else {
+            Manager.rotation = rotation;
+        }
+        
+        GD.Print(Manager.rotation);
     }
 
     private void EndGame() {

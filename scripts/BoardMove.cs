@@ -20,6 +20,9 @@ public partial class BoardMove : Node2D
                 pos += motion.Relative / zoom;
                 Position = pos;
             }
+        } else if (@event is InputEventMouseButton) {
+            var button = (InputEventMouseButton)@event;
+            if (button.ButtonIndex == MouseButton.Right && button.Pressed) Manager.ChangeRotation();
         }
     }
 }
