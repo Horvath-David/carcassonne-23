@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp7bujv7yl0hb"]
+
+[ext_resource type="Script" path="res://scenes/StartGame.cs" id="1_cyp8c"]
+[ext_resource type="Texture2D" uid="uid://b3n6ktjhei5jy" path="res://assets/start.png" id="1_ta4oh"]
+[ext_resource type="Texture2D" uid="uid://domosh5bk02oi" path="res://assets/main_menu_bg.jpg" id="2_f0mia"]
+[ext_resource type="AudioStream" uid="uid://de1akxaf8ql2b" path="res://assets/Glorious Morning.mp3" id="4_55734"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cyp8c")
+
+[node name="MainMenuBg" type="Sprite2D" parent="."]
+position = Vector2(576.5, 323.75)
+scale = Vector2(2, 2)
+texture = ExtResource("2_f0mia")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 464.0
+offset_right = 1217.0
+offset_bottom = 672.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("1_ta4oh")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_55734")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="Start"]
