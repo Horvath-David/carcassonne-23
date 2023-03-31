@@ -27,7 +27,6 @@ public class Tile {
             sides.RemoveAt(sides.Count - 1);
         }
         this.sides = (sides[0], sides[1], sides[2], sides[3]);
-        GD.Print(this.sides);
     }
 }
 

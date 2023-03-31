@@ -16,7 +16,7 @@ public partial class EmptyFrame : Sprite2D, Clickable, Hoverable
 
     public void OnMouseEnter() {
         Texture = GD.Load<CompressedTexture2D>(Manager.gameState.nextTile.path);
-        Rotation = (float)(Math.PI / 180f) * Manager.rotation * 90f;
+        Rotate(Manager.rotation);
     }
 
     public void OnMouseExit() {

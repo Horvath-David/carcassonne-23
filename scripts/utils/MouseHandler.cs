@@ -25,8 +25,7 @@ public partial class MouseHandler : Button
         Connect("button_up", new Godot.Callable(this, "OnMouseUp"));
     }
 
-    public override void _Pressed()
-    {
+    public override void _Pressed() {
         try {
             GetParent<Clickable>().OnClick();
         } catch {}

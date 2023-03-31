@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp7bujv7yl0hb"]
+[gd_scene load_steps=5 format=3 uid="uid://bimdxws8vv0d6"]
 
-[ext_resource type="Script" path="res://scenes/StartGame.cs" id="1_cyp8c"]
-[ext_resource type="Texture2D" uid="uid://b3n6ktjhei5jy" path="res://assets/start.png" id="1_ta4oh"]
-[ext_resource type="Texture2D" uid="uid://domosh5bk02oi" path="res://assets/main_menu_bg.jpg" id="2_f0mia"]
-[ext_resource type="AudioStream" uid="uid://de1akxaf8ql2b" path="res://assets/Glorious Morning.mp3" id="4_55734"]
+[ext_resource type="Script" path="res://scripts/StartGame.cs" id="1_xayhd"]
+[ext_resource type="Texture2D" uid="uid://c3tg7fqscbna5" path="res://assets/main_menu/main_menu_bg.jpg" id="2_dmkqa"]
+[ext_resource type="Texture2D" uid="uid://bjaqeqewwwyew" path="res://assets/main_menu/start.png" id="3_0k711"]
+[ext_resource type="AudioStream" uid="uid://dy3m6knotbu8f" path="res://assets/music/Glorious Morning.mp3" id="4_x0mf3"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,12 +12,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_cyp8c")
+script = ExtResource("1_xayhd")
 
 [node name="MainMenuBg" type="Sprite2D" parent="."]
 position = Vector2(576.5, 323.75)
 scale = Vector2(2, 2)
-texture = ExtResource("2_f0mia")
+texture = ExtResource("2_dmkqa")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
@@ -26,10 +26,10 @@ offset_top = 464.0
 offset_right = 1217.0
 offset_bottom = 672.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("1_ta4oh")
+icon = ExtResource("3_0k711")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_55734")
+stream = ExtResource("4_x0mf3")
 autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="Start"]
