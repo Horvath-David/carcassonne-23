@@ -9,7 +9,12 @@ public partial class EmptyFrame : Sprite2D, Clickable, Hoverable
     public int Y = 0;
 
     public void OnClick() {
-        Manager.PlaceTile(new Tile(X, Y, Manager.gameState.nextTile, rotation: Manager.rotation));
+        var tile = new Tile(X, Y, Manager.gameState.nextTile, rotation: Manager.rotation);
+        if (!Manager.board.IsLegal(tile)) {
+            // Wrong tile code
+            return;
+        }
+        Manager.PlaceTile(tile);
         Manager.emptyFrames.Remove((X, Y));
         QueueFree();
     }

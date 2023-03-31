@@ -31,6 +31,26 @@ public class Tile {
 }
 
 public static class Tiles {
+    public static Tile Rotate(int rotation, Tile tile) {
+        var sides = new List<TileSide> { tile.sides.up, tile.sides.right, tile.sides.down, tile.sides.left };
+        for (var i = 0; i < rotation; i++) {
+            sides.Insert(0, sides[^1]);
+            sides.RemoveAt(sides.Count - 1);
+        }
+        tile.sides = (sides[0], sides[1], sides[2], sides[3]);
+        return tile;
+    }
+
+    public static TileData Rotate(int rotation, TileData tile) {
+        var sides = new List<TileSide> { tile.sides.up, tile.sides.right, tile.sides.down, tile.sides.left };
+        for (var i = 0; i < rotation; i++) {
+            sides.Insert(0, sides[^1]);
+            sides.RemoveAt(sides.Count - 1);
+        }
+        tile.sides = (sides[0], sides[1], sides[2], sides[3]);
+        return tile;
+    }
+    
     private static string prefix = "res://assets/tiles/";
 
     public static TileData a1 = new TileData(prefix + "a1.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Field);

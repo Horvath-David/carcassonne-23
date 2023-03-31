@@ -71,6 +71,10 @@ public partial class Manager : Node2D
             boardNode.AddChild(instance);
             emptyFrames.Add(emptyPlace, instance);
         }
+        if (emptyPlaceBuffer.Count > 0) {
+            GD.Print(emptyPlaceBuffer.Count);
+            HideFrames();
+        }
         emptyPlaceBuffer = new List<(int X, int Y)>();
     }
 
@@ -114,6 +118,35 @@ public partial class Manager : Node2D
 
         foreach (var frame in emptyFrames.Values) {
             frame.Rotate(Manager.rotation);
+        }
+    }
+
+    public static void HideFrames() {
+        foreach (var frame in emptyFrames.Values) {
+            var shouldHide = true;
+            
+            var tile = new Tile(frame.X, frame.Y, Manager.gameState.nextTile);
+            
+            if (Manager.board.IsLegal(tile)) shouldHide = false;
+            if (Manager.board.IsLegal(tile)) shouldHide = false;
+            if (Manager.board.IsLegal(tile)) shouldHide = false;
+            if (Manager.board.IsLegal(tile)) shouldHide = false;
+
+            if (Manager.board.IsLegal(Tiles.Rotate(0,
+                    new Tile(frame.X, frame.Y, Manager.gameState.nextTile)))) shouldHide = false;
+            if (Manager.board.IsLegal(Tiles.Rotate(1,
+                    new Tile(frame.X, frame.Y, Manager.gameState.nextTile)))) shouldHide = false;
+            if (Manager.board.IsLegal(Tiles.Rotate(2,
+                    new Tile(frame.X, frame.Y, Manager.gameState.nextTile)))) shouldHide = false;
+            if (Manager.board.IsLegal(Tiles.Rotate(3,
+                    new Tile(frame.X, frame.Y, Manager.gameState.nextTile)))) shouldHide = false;
+
+            if (shouldHide) {
+                frame.Hide();
+            }
+            else {
+                frame.Show();
+            }
         }
     }
 

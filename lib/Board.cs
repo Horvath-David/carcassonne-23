@@ -37,4 +37,18 @@ public class Board {
     public Dictionary<(int X, int Y), Tile>.ValueCollection GetValues() {
         return board.Values;
     }
+
+    public bool IsLegal(Tile tile) {
+        var up = Get(tile.pos.X, tile.pos.Y + 1);
+        var down = Get(tile.pos.X, tile.pos.Y - 1);
+        var left = Get(tile.pos.X - 1, tile.pos.Y);
+        var right = Get(tile.pos.X + 1, tile.pos.Y);
+
+        if (up != null && up.sides.down != tile.sides.up) return false;
+        if (down != null && down.sides.up != tile.sides.down) return false;
+        if (left != null && left.sides.right != tile.sides.left) return false;
+        if (right != null && right.sides.left != tile.sides.right) return false;
+        
+        return true;
+    }
 }
