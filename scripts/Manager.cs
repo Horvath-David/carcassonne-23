@@ -111,8 +111,10 @@ public partial class Manager : Node2D
         else {
             Manager.rotation = rotation;
         }
-        
-        GD.Print(Manager.rotation);
+
+        foreach (var frame in emptyFrames.Values) {
+            frame.Rotate(Manager.rotation);
+        }
     }
 
     private void EndGame() {
