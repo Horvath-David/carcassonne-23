@@ -10,7 +10,7 @@ public partial class EmptyFrame : Sprite2D, Clickable, Hoverable
 
     public void OnClick() {
         var tile = new Tile(X, Y, Manager.gameState.nextTile, rotation: Manager.rotation);
-        if (!Manager.board.IsLegal(tile)) {
+        if (!Manager.gameState.board.IsLegal(tile)) {
             // Wrong tile code
             return;
         }

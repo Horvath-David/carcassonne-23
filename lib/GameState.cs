@@ -9,6 +9,8 @@ public class GameState {
     
     public List<PlayerState> players = new List<PlayerState>();
 
+    public Board board = new Board();
+
     public List<ScoreRegion> scoreRegions = new List<ScoreRegion>();
     public HashSet<(int X, int Y)> openPlaces = new HashSet<(int X, int Y)>();
 
@@ -27,11 +29,10 @@ public class GameState {
 
         var over = true;
         foreach (var place in openPlaces) {
-            //TODO: integrate board into gameState
-            if (Manager.board.IsLegal(new Tile(place.X, place.Y, nextTile, 0)) ||
-                Manager.board.IsLegal(new Tile(place.X, place.Y, nextTile, 1)) ||
-                Manager.board.IsLegal(new Tile(place.X, place.Y, nextTile, 2)) ||
-                Manager.board.IsLegal(new Tile(place.X, place.Y, nextTile, 3))) over = false;
+            if (board.IsLegal(new Tile(place.X, place.Y, nextTile, 0)) ||
+                board.IsLegal(new Tile(place.X, place.Y, nextTile, 1)) ||
+                board.IsLegal(new Tile(place.X, place.Y, nextTile, 2)) ||
+                board.IsLegal(new Tile(place.X, place.Y, nextTile, 3))) over = false;
         }
 
         if (over) {

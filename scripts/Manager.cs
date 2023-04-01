@@ -10,7 +10,6 @@ public enum GamePhase {
 public partial class Manager : Node2D
 {
     public GamePhase phase = GamePhase.Running;
-    public static Board board = new Board();
     public static GameState gameState = new GameState();
     public static Dictionary<(int X, int Y), EmptyFrame> emptyFrames = new Dictionary<(int X, int Y), EmptyFrame>();
     
@@ -84,24 +83,24 @@ public partial class Manager : Node2D
     public static void PlaceTile(Tile tile) {
         if (gameState.gameOver) return;
         
-        board.Set(tile.pos.X, tile.pos.Y, tile);
-        addBuffer.Add(board.Get(tile.pos.X, tile.pos.Y));
+        gameState.board.Set(tile.pos.X, tile.pos.Y, tile);
+        addBuffer.Add(gameState.board.Get(tile.pos.X, tile.pos.Y));
 
         gameState.openPlaces.Remove((tile.pos.X, tile.pos.Y));
 
-        if (board.Get(tile.pos.X + 1, tile.pos.Y) == null) {
+        if (gameState.board.Get(tile.pos.X + 1, tile.pos.Y) == null) {
             gameState.openPlaces.Add((tile.pos.X + 1, tile.pos.Y));
             emptyPlaceBuffer.Add((tile.pos.X + 1, tile.pos.Y));
         }
-        if (board.Get(tile.pos.X - 1, tile.pos.Y) == null) {
+        if (gameState.board.Get(tile.pos.X - 1, tile.pos.Y) == null) {
             gameState.openPlaces.Add((tile.pos.X - 1, tile.pos.Y));
             emptyPlaceBuffer.Add((tile.pos.X - 1, tile.pos.Y));
         }
-        if (board.Get(tile.pos.X, tile.pos.Y + 1) == null) {
+        if (gameState.board.Get(tile.pos.X, tile.pos.Y + 1) == null) {
             gameState.openPlaces.Add((tile.pos.X, tile.pos.Y + 1));
             emptyPlaceBuffer.Add((tile.pos.X, tile.pos.Y + 1));
         }
-        if (board.Get(tile.pos.X, tile.pos.Y - 1) == null) {
+        if (gameState.board.Get(tile.pos.X, tile.pos.Y - 1) == null) {
             gameState.openPlaces.Add((tile.pos.X, tile.pos.Y - 1));
             emptyPlaceBuffer.Add((tile.pos.X, tile.pos.Y - 1));
         }
@@ -136,18 +135,18 @@ public partial class Manager : Node2D
             
             var tile = new Tile(frame.X, frame.Y, Manager.gameState.nextTile);
             
-            if (Manager.board.IsLegal(tile)) shouldHide = false;
-            if (Manager.board.IsLegal(tile)) shouldHide = false;
-            if (Manager.board.IsLegal(tile)) shouldHide = false;
-            if (Manager.board.IsLegal(tile)) shouldHide = false;
+            if (Manager.gameState.board.IsLegal(tile)) shouldHide = false;
+            if (Manager.gameState.board.IsLegal(tile)) shouldHide = false;
+            if (Manager.gameState.board.IsLegal(tile)) shouldHide = false;
+            if (Manager.gameState.board.IsLegal(tile)) shouldHide = false;
 
-            if (Manager.board.IsLegal(Tiles.Rotate(0,
+            if (Manager.gameState.board.IsLegal(Tiles.Rotate(0,
                     new Tile(frame.X, frame.Y, Manager.gameState.nextTile)))) shouldHide = false;
-            if (Manager.board.IsLegal(Tiles.Rotate(1,
+            if (Manager.gameState.board.IsLegal(Tiles.Rotate(1,
                     new Tile(frame.X, frame.Y, Manager.gameState.nextTile)))) shouldHide = false;
-            if (Manager.board.IsLegal(Tiles.Rotate(2,
+            if (Manager.gameState.board.IsLegal(Tiles.Rotate(2,
                     new Tile(frame.X, frame.Y, Manager.gameState.nextTile)))) shouldHide = false;
-            if (Manager.board.IsLegal(Tiles.Rotate(3,
+            if (Manager.gameState.board.IsLegal(Tiles.Rotate(3,
                     new Tile(frame.X, frame.Y, Manager.gameState.nextTile)))) shouldHide = false;
 
             if (shouldHide) {
