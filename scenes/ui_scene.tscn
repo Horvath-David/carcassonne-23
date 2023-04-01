@@ -1,6 +1,11 @@
-[gd_scene format=3 uid="uid://qh0nhssqlu3h"]
+[gd_scene load_steps=3 format=3 uid="uid://qh0nhssqlu3h"]
 
-[node name="UIScene" type="Control"]
+[ext_resource type="Script" path="res://scripts/UIManager.cs" id="1_foagf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_phq8c"]
+font_size = 19
+
+[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -8,16 +13,99 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_foagf")
+scoreLabel = NodePath("Score")
+tilesLeftLabel = NodePath("TilesLeft")
+nextTileRect = NodePath("NextTile")
 
-[node name="Button" type="Button" parent="."]
+[node name="Frame" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="topleft" type="ColorRect" parent="Frame"]
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="bottomleft" type="ColorRect" parent="Frame"]
+offset_top = 600.0
+offset_right = 128.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="bottomright" type="ColorRect" parent="Frame"]
+offset_left = 1000.0
+offset_top = 496.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="bottomright2" type="ColorRect" parent="Frame"]
+offset_left = 864.0
+offset_top = 600.0
+offset_right = 1000.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="top" type="ColorRect" parent="Frame"]
+offset_right = 1152.0
+offset_bottom = 12.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="bottom" type="ColorRect" parent="Frame"]
+offset_top = 636.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="left" type="ColorRect" parent="Frame"]
+offset_right = 12.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="right" type="ColorRect" parent="Frame"]
+offset_left = 1140.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="BackButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 498.0
-offset_top = 591.0
-offset_right = -498.0
-offset_bottom = -16.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -1100.0
+offset_bottom = -596.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "ASD"
+text = "X"
+
+[node name="NextTile" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1012.0
+offset_top = 508.0
+offset_right = 1140.0
+offset_bottom = 636.0
+pivot_offset = Vector2(64, 64)
+expand_mode = 2
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 608.0
+offset_right = 119.0
+offset_bottom = 638.0
+text = "Score: idk"
+label_settings = SubResource("LabelSettings_phq8c")
+vertical_alignment = 1
+
+[node name="TilesLeft" type="Label" parent="."]
+layout_mode = 0
+offset_left = 874.0
+offset_top = 608.0
+offset_right = 1000.0
+offset_bottom = 638.0
+text = "Tiles left: 72"
+label_settings = SubResource("LabelSettings_phq8c")
+vertical_alignment = 1

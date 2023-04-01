@@ -18,15 +18,17 @@ public partial class Manager : Node2D
     public static List<(int X, int Y)> emptyPlaceBuffer = new List<(int X, int Y)>();
 
     public static int rotation = 0;
+    public static bool shouldCheck = false;
 
     PackedScene tilePrefab = GD.Load<PackedScene>("res://prefabs/tile.tscn");
     PackedScene emptyFrame;
     
-    [Export]
-    Node2D boardNode;
+    [Export] public Node2D boardNode;
+    public static UIManager uiManager;
     
     public override void _Ready() {
         emptyFrame = GD.Load<PackedScene>("res://prefabs/frame.tscn");
+        uiManager = GetParent().GetNode("UIScene") as UIManager;
 
         gameState.tilesLeft = new List<TileData>(Tiles.all);
         gameState.nextTile = Tiles.st;
@@ -42,7 +44,7 @@ public partial class Manager : Node2D
                 AppyAddBuffer();
                 ApplyEmptyPlaceBuffer();
 
-                if (gameState.gameOver) EndGame();
+                if (gameState.gameOver) EndGame(gameState.normalGameOver);
                 break;
             }
             case GamePhase.Ended: {
@@ -71,9 +73,10 @@ public partial class Manager : Node2D
             boardNode.AddChild(instance);
             emptyFrames.Add(emptyPlace, instance);
         }
-        if (emptyPlaceBuffer.Count > 0) {
+        if (emptyPlaceBuffer.Count > 0 || shouldCheck) {
             GD.Print(emptyPlaceBuffer.Count);
             HideFrames();
+            shouldCheck = false;
         }
         emptyPlaceBuffer = new List<(int X, int Y)>();
     }
@@ -103,8 +106,13 @@ public partial class Manager : Node2D
             emptyPlaceBuffer.Add((tile.pos.X, tile.pos.Y - 1));
         }
         gameState.ChooseNextTile();
+        
+        uiManager.nextTileRect.Texture = GD.Load<CompressedTexture2D>(gameState.nextTile.path);
+        uiManager.SetLeft(gameState.tilesLeft.Count + 1);
 
         rotation = 0;
+
+        shouldCheck = true;
     }
 
     public static void ChangeRotation(int rotation = -1) {
@@ -116,6 +124,7 @@ public partial class Manager : Node2D
             Manager.rotation = rotation;
         }
 
+        uiManager.nextTileRect.Rotation = (float)(Math.PI / 180f) * Manager.rotation * 90f;
         foreach (var frame in emptyFrames.Values) {
             frame.Rotate(Manager.rotation);
         }
@@ -150,8 +159,12 @@ public partial class Manager : Node2D
         }
     }
 
-    private void EndGame() {
+    private void EndGame(bool normal) {
         phase = GamePhase.Ended;
+        if (normal) {
+            uiManager.SetLeft(0);
+            uiManager.nextTileRect.Modulate = Colors.Transparent;
+        }
         GD.Print("Game Over");
         
         foreach (var node in emptyFrames.Values) {
