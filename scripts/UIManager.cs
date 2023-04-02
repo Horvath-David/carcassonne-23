@@ -9,4 +9,7 @@ public partial class UIManager : Control {
     public void SetLeft(int left) {
         tilesLeftLabel.Text = "Tiles left: " + left.ToString();
     }
+    public void Exit() {
+        GetTree().Quit();
+    }
 }
