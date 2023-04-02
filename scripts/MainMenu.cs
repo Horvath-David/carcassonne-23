@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class StartGame : Control
+public partial class MainMenu : Control
 {
 	async public void Start() {
 		var music = (AudioStreamPlayer)GetNode("Music");
@@ -10,5 +10,9 @@ public partial class StartGame : Control
 			await ToSignal(GetTree().CreateTimer(0.00005f), "timeout");
 		}
 		GetTree().ChangeSceneToFile("res://scenes/main.tscn");
+	}
+
+	public void Exit() {
+		GetTree().Quit();
 	}
 }
