@@ -22,17 +22,20 @@ nextTileRect = NodePath("NextTile")
 anchors_preset = 0
 
 [node name="topleft" type="ColorRect" parent="Frame"]
+layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="bottomleft" type="ColorRect" parent="Frame"]
+layout_mode = 0
 offset_top = 600.0
 offset_right = 128.0
 offset_bottom = 648.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="bottomright" type="ColorRect" parent="Frame"]
+layout_mode = 0
 offset_left = 1000.0
 offset_top = 496.0
 offset_right = 1152.0
@@ -40,6 +43,7 @@ offset_bottom = 648.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="bottomright2" type="ColorRect" parent="Frame"]
+layout_mode = 0
 offset_left = 864.0
 offset_top = 600.0
 offset_right = 1000.0
@@ -47,22 +51,26 @@ offset_bottom = 648.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="top" type="ColorRect" parent="Frame"]
+layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 12.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="bottom" type="ColorRect" parent="Frame"]
+layout_mode = 0
 offset_top = 636.0
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="left" type="ColorRect" parent="Frame"]
+layout_mode = 0
 offset_right = 12.0
 offset_bottom = 648.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="right" type="ColorRect" parent="Frame"]
+layout_mode = 0
 offset_left = 1140.0
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -109,3 +117,5 @@ offset_bottom = 638.0
 text = "Tiles left: 72"
 label_settings = SubResource("LabelSettings_phq8c")
 vertical_alignment = 1
+
+[connection signal="pressed" from="BackButton" to="." method="Exit"]
