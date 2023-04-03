@@ -1,8 +1,7 @@
 using System;
 using Godot;
 
-public partial class EmptyFrame : Sprite2D, Clickable, Hoverable
-{
+public partial class EmptyFrame : Sprite2D, Clickable, Hoverable {
     [Export]
     public int X = 0;
     [Export]

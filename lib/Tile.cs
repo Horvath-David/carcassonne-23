@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-
+using Godot.NativeInterop;
 
 public enum TileSide {
     Road,

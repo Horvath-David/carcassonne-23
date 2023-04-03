@@ -1,16 +1,15 @@
 using Godot;
 using System;
 
-public partial class BoardZoom : Node2D
-{
+public partial class BoardZoom : Node2D {
     [Export]
     private float ZoomStep = 0.2f;
     [Export]
     private float MinZoom = 0.5f;
     [Export]
     private float MaxZoom = 5f;
-    public override void _UnhandledInput(InputEvent @event)
-    {
+    
+    public override void _UnhandledInput(InputEvent @event) {
         var zoom = (Vector2)Get("scale");
         if (@event is InputEventMouseButton) {
             var button = (InputEventMouseButton)@event;

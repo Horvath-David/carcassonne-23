@@ -7,8 +7,7 @@ public enum GamePhase {
     Ended
 }
 
-public partial class Manager : Node2D
-{
+public partial class Manager : Node2D {
     public GamePhase phase = GamePhase.Running;
     public static GameState gameState = new GameState();
     public static Dictionary<(int X, int Y), EmptyFrame> emptyFrames = new Dictionary<(int X, int Y), EmptyFrame>();
@@ -36,8 +35,7 @@ public partial class Manager : Node2D
         PlaceTile(new Tile(0, 0, gameState.nextTile));
     }
 
-    public override void _Process(double delta)
-    {
+    public override void _Process(double delta) {
         switch (phase) {
             case GamePhase.Running: {
                 AppyAddBuffer();
@@ -118,8 +116,7 @@ public partial class Manager : Node2D
         if (rotation < 0 || rotation > 3) {
             Manager.rotation++;
             if (Manager.rotation == 4) Manager.rotation = 0;
-        }
-        else {
+        } else {
             Manager.rotation = rotation;
         }
 
@@ -151,8 +148,7 @@ public partial class Manager : Node2D
 
             if (shouldHide) {
                 frame.Hide();
-            }
-            else {
+            } else {
                 frame.Show();
             }
         }

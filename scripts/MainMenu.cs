@@ -1,13 +1,12 @@
 using Godot;
 using System;
 
-public partial class MainMenu : Control
-{
+public partial class MainMenu : Control {
     [Export] public AudioStreamPlayer musicPlayer;
     [Export] public Button muteMusicButton;
 	[Export] public Button startButton;
-	public override void _Ready()
-    {
+	
+	public override void _Ready() {
         muteMusicButton.ButtonPressed = true;
     }
 	async public void Start() {
@@ -22,12 +21,12 @@ public partial class MainMenu : Control
 	public void Exit() {
 		GetTree().Quit();
 	}
+	
 	public void MuteMusic(bool button_pressed){
         if (button_pressed){ 
 			musicPlayer.StreamPaused = false;
 			muteMusicButton.Text = "♫";
-			}
-        else if (! button_pressed) {
+        } else {
 			musicPlayer.StreamPaused = true;
 			muteMusicButton.Text = "♪";
 			}
