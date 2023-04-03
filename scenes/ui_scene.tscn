@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://qh0nhssqlu3h"]
+[gd_scene load_steps=4 format=3 uid="uid://qh0nhssqlu3h"]
 
 [ext_resource type="Script" path="res://scripts/UIManager.cs" id="1_foagf"]
+[ext_resource type="AudioStream" uid="uid://c5p5m4nl36a4m" path="res://assets/music/gameplay.mp3" id="2_m7b6k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_phq8c"]
 font_size = 19
 
-[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect")]
+[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect", "musicPlayer", "muteMusicButton", "waitLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +18,9 @@ script = ExtResource("1_foagf")
 scoreLabel = NodePath("Score")
 tilesLeftLabel = NodePath("TilesLeft")
 nextTileRect = NodePath("NextTile")
+musicPlayer = NodePath("AudioStreamPlayer")
+muteMusicButton = NodePath("MuteMusic")
+waitLabel = NodePath("Wait")
 
 [node name="Frame" type="Control" parent="."]
 anchors_preset = 0
@@ -76,6 +80,13 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
+[node name="topright" type="ColorRect" parent="Frame"]
+layout_mode = 0
+offset_left = 1088.0
+offset_right = 1152.0
+offset_bottom = 64.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -118,4 +129,26 @@ text = "Tiles left: 72"
 label_settings = SubResource("LabelSettings_phq8c")
 vertical_alignment = 1
 
+[node name="MuteMusic" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1097.0
+offset_top = 15.0
+offset_right = 1137.0
+offset_bottom = 55.0
+toggle_mode = true
+text = "♫"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_m7b6k")
+
+[node name="Wait" type="Label" parent="."]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 554.0
+offset_right = 725.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 50
+text = "Please wait..."
+
 [connection signal="pressed" from="BackButton" to="." method="Exit"]
+[connection signal="toggled" from="MuteMusic" to="." method="MuteMusic"]

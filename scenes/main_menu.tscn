@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/MainMenu.cs" id="1_wenkv"]
 [ext_resource type="Texture2D" uid="uid://c3tg7fqscbna5" path="res://assets/main_menu/main_menu_bg.jpg" id="2_dmkqa"]
-[ext_resource type="Texture2D" uid="uid://bjaqeqewwwyew" path="res://assets/main_menu/start.png" id="3_0k711"]
+[ext_resource type="FontFile" uid="uid://cd1pvabb4s12j" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="3_g0r27"]
 [ext_resource type="AudioStream" uid="uid://dy3m6knotbu8f" path="res://assets/music/Glorious Morning.mp3" id="4_x0mf3"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("musicPlayer", "muteMusicButton", "startButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,20 +13,78 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wenkv")
+musicPlayer = NodePath("Music")
+muteMusicButton = NodePath("MuteMusic")
+startButton = NodePath("Button")
 
 [node name="MainMenuBg" type="Sprite2D" parent="."]
-position = Vector2(576.5, 323.75)
-scale = Vector2(2, 2)
+position = Vector2(579, 326)
+scale = Vector2(1.85, 1.85)
 texture = ExtResource("2_dmkqa")
+
+[node name="Frame" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="topleft" type="ColorRect" parent="Frame"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="top" type="ColorRect" parent="Frame"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 12.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="bottom" type="ColorRect" parent="Frame"]
+layout_mode = 0
+offset_top = 636.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="left" type="ColorRect" parent="Frame"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="right" type="ColorRect" parent="Frame"]
+layout_mode = 0
+offset_left = 1140.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="topright" type="ColorRect" parent="Frame"]
+layout_mode = 0
+offset_left = 1088.0
+offset_right = 1152.0
+offset_bottom = 64.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 409.0
+offset_left = 321.0
 offset_top = 464.0
-offset_right = 1217.0
+offset_right = 1467.0
 offset_bottom = 672.0
 scale = Vector2(0.5, 0.5)
-icon = ExtResource("3_0k711")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_g0r27")
+theme_override_font_sizes/font_size = 120
+text = "Start Game"
+
+[node name="MuteMusic" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1097.0
+offset_top = 15.0
+offset_right = 1137.0
+offset_bottom = 55.0
+toggle_mode = true
+text = "♫"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_x0mf3")
@@ -46,4 +104,5 @@ grow_vertical = 2
 text = "X"
 
 [connection signal="pressed" from="Button" to="." method="Start"]
+[connection signal="toggled" from="MuteMusic" to="." method="MuteMusic"]
 [connection signal="pressed" from="BackButton" to="." method="Exit"]
