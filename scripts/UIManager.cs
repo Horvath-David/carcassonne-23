@@ -21,14 +21,13 @@ public partial class UIManager : Control {
         waitLabel.Hide();
     }
 
-    public async void SetLeft(int left) {
+    public void SetLeft(int left) {
         tilesLeftLabel.Text = "Tiles left: " + left.ToString();
     }
 
     public async void GameOver() {
-        waitLabel.Show();
         for (int i = 0; i <= 40; i++) {
-            musicPlayer.VolumeDb = i*(-1);
+            musicPlayer.VolumeDb = i * (-1);
             await ToSignal(GetTree().CreateTimer(0.00005f), "timeout");
         }
         musicPlayer.Stop();
@@ -36,14 +35,11 @@ public partial class UIManager : Control {
         musicPlayer.VolumeDb = 0;
         musicPlayer.Play();
         gameOverLabel.Show();
-        waitLabel.Hide();
         await ToSignal(GetTree().CreateTimer(30.0f), "timeout");
-        waitLabel.Show();
         for (int i = 0; i <= 40; i++) {
             musicPlayer.VolumeDb = i*(-1);
             await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
         }
-        waitLabel.Hide();
     }
     
     public void Exit() {
