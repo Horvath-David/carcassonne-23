@@ -161,6 +161,7 @@ public partial class Manager : Node2D {
             uiManager.nextTileRect.Modulate = Colors.Transparent;
         }
         GD.Print("Game Over");
+        uiManager.GameOver();
         
         foreach (var node in emptyFrames.Values) {
             node.QueueFree();
