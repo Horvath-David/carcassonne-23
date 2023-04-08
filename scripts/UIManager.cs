@@ -23,9 +23,6 @@ public partial class UIManager : Control {
 
     public async void SetLeft(int left) {
         tilesLeftLabel.Text = "Tiles left: " + left.ToString();
-        if (left == 0) {
-            GameOver();
-        }
     }
 
     public async void GameOver() {
