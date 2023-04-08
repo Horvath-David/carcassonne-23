@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://31a22smjirbt"
+path="res://.godot/imported/Directed by Robert B. Weide.mp3-e647a07f5eb4409fbfdc038f7de5623a.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Directed by Robert B. Weide.mp3"
+dest_files=["res://.godot/imported/Directed by Robert B. Weide.mp3-e647a07f5eb4409fbfdc038f7de5623a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

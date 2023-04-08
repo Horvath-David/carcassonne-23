@@ -4,8 +4,8 @@ using System;
 public partial class MainMenu : Control {
     [Export] public AudioStreamPlayer musicPlayer;
     [Export] public Button muteMusicButton;
-	[Export] public Button startButton;
-	
+    [Export] public Button startButton;
+
 	public override void _Ready() {
         muteMusicButton.ButtonPressed = true;
     }
@@ -28,7 +28,7 @@ public partial class MainMenu : Control {
 			muteMusicButton.Text = "♫";
         } else {
 			musicPlayer.StreamPaused = true;
-			muteMusicButton.Text = "♪";
-			}
+			muteMusicButton.Text = "♪"; 
+        }
     }
 }
