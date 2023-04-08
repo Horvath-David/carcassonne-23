@@ -18,14 +18,14 @@ public partial class Manager : Node2D {
     public static int rotation = 0;
     public static bool shouldCheck = false;
 
+    public static PackedScene scoreArea = GD.Load<PackedScene>("res://prefabs/score_area.tscn");
     PackedScene tilePrefab = GD.Load<PackedScene>("res://prefabs/tile.tscn");
-    PackedScene emptyFrame;
-    
+    PackedScene emptyFrame = GD.Load<PackedScene>("res://prefabs/frame.tscn");
+
     [Export] public Node2D boardNode;
     public static UIManager uiManager;
     
     public override void _Ready() {
-        emptyFrame = GD.Load<PackedScene>("res://prefabs/frame.tscn");
         uiManager = GetParent().GetNode("UIScene") as UIManager;
 
         gameState.tilesLeft = new List<TileData>(Tiles.all);
@@ -52,10 +52,11 @@ public partial class Manager : Node2D {
 
     private void AppyAddBuffer() {
         foreach (var tile in addBuffer) {
-            var instance = tilePrefab.Instantiate() as Sprite2D;
+            var instance = tilePrefab.Instantiate() as TileController;
             instance.Set("position", new Vector2(tile.pos.X * 100, -tile.pos.Y * 100));
             instance.Texture = GD.Load<Texture2D>(tile.type.path);
             instance.Rotation = (float)(Math.PI / 180f) * tile.rotation * 90f;
+            instance.tile = tile;
             boardNode.AddChild(instance);
         }
         addBuffer = new List<Tile>();
@@ -71,7 +72,6 @@ public partial class Manager : Node2D {
             emptyFrames.Add(emptyPlace, instance);
         }
         if (emptyPlaceBuffer.Count > 0 || shouldCheck) {
-            GD.Print(emptyPlaceBuffer.Count);
             HideFrames();
             shouldCheck = false;
         }
@@ -107,7 +107,7 @@ public partial class Manager : Node2D {
         uiManager.nextTileRect.Texture = GD.Load<CompressedTexture2D>(gameState.nextTile.path);
         uiManager.SetLeft(gameState.tilesLeft.Count + 1);
 
-        rotation = 0;
+        ChangeRotation(0);
 
         shouldCheck = true;
     }
@@ -152,6 +152,10 @@ public partial class Manager : Node2D {
                 frame.Show();
             }
         }
+    }
+    
+    public void CheckRegions() {
+        throw new NotImplementedException();
     }
 
     private void EndGame(bool normal) {

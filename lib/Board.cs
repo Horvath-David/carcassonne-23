@@ -39,6 +39,8 @@ public class Board {
     }
 
     public bool IsLegal(Tile tile) {
+        if (Get(tile.pos.X, tile.pos.Y) != null) return false;
+        
         var up = Get(tile.pos.X, tile.pos.Y + 1);
         var down = Get(tile.pos.X, tile.pos.Y - 1);
         var left = Get(tile.pos.X - 1, tile.pos.Y);

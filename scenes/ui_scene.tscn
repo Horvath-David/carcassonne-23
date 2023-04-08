@@ -24,6 +24,7 @@ waitLabel = NodePath("Wait")
 
 [node name="Frame" type="Control" parent="."]
 anchors_preset = 0
+mouse_filter = 2
 
 [node name="topleft" type="ColorRect" parent="Frame"]
 layout_mode = 0

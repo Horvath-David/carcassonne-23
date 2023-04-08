@@ -8,6 +8,7 @@ public class GameState {
     public bool normalGameOver = true;
     
     public List<PlayerState> players = new List<PlayerState>();
+    public int currentPlayer = 0;
 
     public Board board = new Board();
 
@@ -41,4 +42,19 @@ public class GameState {
             return;
         }
     }
+
+    public void MergeRegions(int index1, int index2) {
+        throw new NotImplementedException();
+    }
+
+    public void NextPlayer() {
+        throw new NotImplementedException();
+    }
+
+    public bool CanPlaceMeeple(ScoreArea area) {
+        return scoreRegions.Find(r => r.Connects(area)) == null;
+    }
+
+    // When placing tiles and searching for regions, go over all, Connects(), if one found add, if two found merge and add
+    // If Connects() to any region, don't allow placing meeples
 }
