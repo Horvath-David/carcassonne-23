@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_phq8c"]
 font_size = 19
 
-[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect", "musicPlayer", "muteMusicButton", "waitLabel", "gameOverLabel")]
+[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect", "musicPlayer", "muteMusicButton", "waitLabel", "gameOverLabel", "musicVolPopUp", "musicVolume")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,9 +19,11 @@ scoreLabel = NodePath("Score")
 tilesLeftLabel = NodePath("TilesLeft")
 nextTileRect = NodePath("NextTile")
 musicPlayer = NodePath("AudioStreamPlayer")
-muteMusicButton = NodePath("MuteMusic")
+muteMusicButton = NodePath("MusicVolume/Button")
 waitLabel = NodePath("Wait")
 gameOverLabel = NodePath("GameOver")
+musicVolPopUp = NodePath("MusicVolume")
+musicVolume = NodePath("MusicVolume/HSlider")
 
 [node name="Frame" type="Control" parent="."]
 anchors_preset = 0
@@ -131,7 +133,7 @@ text = "Tiles left: 72"
 label_settings = SubResource("LabelSettings_phq8c")
 vertical_alignment = 1
 
-[node name="MuteMusic" type="Button" parent="."]
+[node name="MutePupupToggle" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1097.0
 offset_top = 15.0
@@ -162,5 +164,39 @@ offset_bottom = 372.0
 theme_override_font_sizes/font_size = 100
 text = "Game Over"
 
+[node name="MusicVolume" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 834.0
+offset_top = 12.0
+offset_right = 1088.0
+offset_bottom = 64.0
+
+[node name="ColorRect" type="ColorRect" parent="MusicVolume"]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 52.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="HSlider" type="HSlider" parent="MusicVolume"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 143.0
+offset_bottom = 50.0
+value = 100.0
+
+[node name="Button" type="Button" parent="MusicVolume"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 3.0
+offset_right = 239.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 23
+toggle_mode = true
+text = "Stop"
+
 [connection signal="pressed" from="BackButton" to="." method="Exit"]
-[connection signal="toggled" from="MuteMusic" to="." method="MuteMusic"]
+[connection signal="toggled" from="MutePupupToggle" to="." method="MusicPopup"]
+[connection signal="drag_ended" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
+[connection signal="toggled" from="MusicVolume/Button" to="." method="MuteMusic"]
