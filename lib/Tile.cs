@@ -176,101 +176,290 @@ public static class Tiles {
     private static string prefix = "res://assets/tiles/";
 
     //TODO: data entry
-    public static TileData a1 = new TileData(prefix + "a1.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Field, new []{new ScoreArea(RegionShapes.monastery1, AreaType.Monastery, (false, false, false, false))});
-    public static TileData a2 = new TileData(prefix + "a2.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Field, new ScoreArea[] {});
+    public static TileData a1 = new TileData(prefix + "a1.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.monastery1, AreaType.Monastery, (false, false, false, false)),
+        new ScoreArea(RegionShapes.bottomRoad1, AreaType.Road, (false, false, true, false)),
+    });
+    public static TileData a2 = new TileData(prefix + "a2.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.monastery1, AreaType.Monastery, (false, false, false, false)),
+        new ScoreArea(RegionShapes.bottomRoad1, AreaType.Road, (false, false, true, false)),
+    });
 
-    public static TileData b1 = new TileData(prefix + "b1.jpg", TileSide.Field, TileSide.Field, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData b2 = new TileData(prefix + "b2.jpg", TileSide.Field, TileSide.Field, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData b3 = new TileData(prefix + "b3.jpg", TileSide.Field, TileSide.Field, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData b4 = new TileData(prefix + "b4.jpg", TileSide.Field, TileSide.Field, TileSide.Field, TileSide.Field, new ScoreArea[] {});
+    public static TileData b1 = new TileData(prefix + "b1.jpg", TileSide.Field, TileSide.Field, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.monastery2, AreaType.Monastery, (false, false, false, false)),
+    });
+    public static TileData b2 = new TileData(prefix + "b2.jpg", TileSide.Field, TileSide.Field, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.monastery2, AreaType.Monastery, (false, false, false, false)),
+    });
+    public static TileData b3 = new TileData(prefix + "b3.jpg", TileSide.Field, TileSide.Field, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.monastery2, AreaType.Monastery, (false, false, false, false)),
+    });
+    public static TileData b4 = new TileData(prefix + "b4.jpg", TileSide.Field, TileSide.Field, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.monastery2, AreaType.Monastery, (false, false, false, false)),
+    });
 
-    public static TileData c =  new TileData(prefix +  "c.jpg", TileSide.City, TileSide.City, TileSide.City, TileSide.City, new ScoreArea[] {});
+    public static TileData c =  new TileData(prefix +  "c.jpg", TileSide.City, TileSide.City, TileSide.City, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.wholeCity, AreaType.ShieldCity, (true, true, true, true)),
+    });
 
-    public static TileData d1 = new TileData(prefix + "d1.jpg", TileSide.City, TileSide.Road, TileSide.Field, TileSide.Road, new ScoreArea[] {});
-    public static TileData d2 = new TileData(prefix + "d2.jpg", TileSide.City, TileSide.Road, TileSide.Field, TileSide.Road, new ScoreArea[] {});
-    public static TileData d3 = new TileData(prefix + "d3.jpg", TileSide.City, TileSide.Road, TileSide.Field, TileSide.Road, new ScoreArea[] {});
-    public static TileData st = new TileData(prefix + "st.jpg", TileSide.City, TileSide.Road, TileSide.Field, TileSide.Road, new ScoreArea[] {});
+    public static TileData d1 = new TileData(prefix + "d1.jpg", TileSide.City, TileSide.Road, TileSide.Field, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftToRightRoad, AreaType.Road, (false, true, false, true)),
+    });
+    public static TileData d2 = new TileData(prefix + "d2.jpg", TileSide.City, TileSide.Road, TileSide.Field, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftToRightRoad, AreaType.Road, (false, true, false, true)),
+    });
+    public static TileData d3 = new TileData(prefix + "d3.jpg", TileSide.City, TileSide.Road, TileSide.Field, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftToRightRoad, AreaType.Road, (false, true, false, true)),
+    });
+    public static TileData st = new TileData(prefix + "st.jpg", TileSide.City, TileSide.Road, TileSide.Field, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftToRightRoad, AreaType.Road, (false, true, false, true)),
+    });
 
-    public static TileData e1 = new TileData(prefix + "e1.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData e2 = new TileData(prefix + "e2.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData e3 = new TileData(prefix + "e3.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData e4 = new TileData(prefix + "e4.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData e5 = new TileData(prefix + "e5.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new ScoreArea[] {});
+    public static TileData e1 = new TileData(prefix + "e1.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.bigCity, AreaType.City, (true, false, false, false)),
+    });
+    public static TileData e2 = new TileData(prefix + "e2.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.bigCity, AreaType.City, (true, false, false, false)),
+    });
+    public static TileData e3 = new TileData(prefix + "e3.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.bigCity, AreaType.City, (true, false, false, false)),
+    });
+    public static TileData e4 = new TileData(prefix + "e4.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.bigCity, AreaType.City, (true, false, false, false)),
+    });
+    public static TileData e5 = new TileData(prefix + "e5.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.bigCity, AreaType.City, (true, false, false, false)),
+    });
 
-    public static TileData f1 = new TileData(prefix + "f1.jpg", TileSide.Field, TileSide.City, TileSide.Field, TileSide.City, new ScoreArea[] {});
-    public static TileData f2 = new TileData(prefix + "f2.jpg", TileSide.Field, TileSide.City, TileSide.Field, TileSide.City, new ScoreArea[] {});
+    public static TileData f1 = new TileData(prefix + "f1.jpg", TileSide.Field, TileSide.City, TileSide.Field, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.bridgeCity, AreaType.ShieldCity, (false, true, false, true)),
+    });
+    public static TileData f2 = new TileData(prefix + "f2.jpg", TileSide.Field, TileSide.City, TileSide.Field, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.bridgeCity, AreaType.ShieldCity, (false, true, false, true)),
+    });
 
-    public static TileData g =  new TileData(prefix +  "g.jpg", TileSide.Field, TileSide.City, TileSide.Field, TileSide.City, new ScoreArea[] {});
+    public static TileData g =  new TileData(prefix +  "g.jpg", TileSide.Field, TileSide.City, TileSide.Field, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.bridgeCity, AreaType.City, (false, true, false, true)),
+    });
 
-    public static TileData h1 = new TileData(prefix + "h1.jpg", TileSide.City, TileSide.Field, TileSide.City, TileSide.Field, new ScoreArea[] {});
-    public static TileData h2 = new TileData(prefix + "h2.jpg", TileSide.City, TileSide.Field, TileSide.City, TileSide.Field, new ScoreArea[] {});
-    public static TileData h3 = new TileData(prefix + "h3.jpg", TileSide.City, TileSide.Field, TileSide.City, TileSide.Field, new ScoreArea[] {});
+    public static TileData h1 = new TileData(prefix + "h1.jpg", TileSide.City, TileSide.Field, TileSide.City, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.bottomCity, AreaType.City, (false, false, true, false)),
+    });
+    public static TileData h2 = new TileData(prefix + "h2.jpg", TileSide.City, TileSide.Field, TileSide.City, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.middleTopCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.bottomCity, AreaType.City, (false, false, true, false)),
+    });
+    public static TileData h3 = new TileData(prefix + "h3.jpg", TileSide.City, TileSide.Field, TileSide.City, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.middleTopCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.bottomCity, AreaType.City, (false, false, true, false)),
+    });
 
-    public static TileData i1 = new TileData(prefix + "i1.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.City, new ScoreArea[] {});
-    public static TileData i2 = new TileData(prefix + "i2.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.City, new ScoreArea[] {});
+    public static TileData i1 = new TileData(prefix + "i1.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftCity, AreaType.City, (false, false, false, true)),
+    });
+    public static TileData i2 = new TileData(prefix + "i2.jpg", TileSide.City, TileSide.Field, TileSide.Field, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftCity, AreaType.City, (false, false, false, true)),
+    });
 
-    public static TileData j1 = new TileData(prefix + "j1.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Field, new ScoreArea[] {});
-    public static TileData j2 = new TileData(prefix + "j2.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Field, new ScoreArea[] {});
-    public static TileData j3 = new TileData(prefix + "j3.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Field, new ScoreArea[] {});
+    public static TileData j1 = new TileData(prefix + "j1.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.middleTopCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.rightToBottomRoad1, AreaType.Road, (false, true, true, false)),
+    });
+    public static TileData j2 = new TileData(prefix + "j2.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.middleTopCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.rightToBottomRoad1, AreaType.Road, (false, true, true, false)),
+    });
+    public static TileData j3 = new TileData(prefix + "j3.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.middleTopCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.rightToBottomRoad1, AreaType.Road, (false, true, true, false)),
+    });
 
-    public static TileData k1 = new TileData(prefix + "k1.jpg", TileSide.City, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData k2 = new TileData(prefix + "k2.jpg", TileSide.City, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData k3 = new TileData(prefix + "k3.jpg", TileSide.City, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
+    public static TileData k1 = new TileData(prefix + "k1.jpg", TileSide.City, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.middleTopCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftToBottomRoad1, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData k2 = new TileData(prefix + "k2.jpg", TileSide.City, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.middleTopCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftToBottomRoad1, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData k3 = new TileData(prefix + "k3.jpg", TileSide.City, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.middleTopCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftToBottomRoad1, AreaType.Road, (false, false, true, true)),
+    });
 
-    public static TileData l1 = new TileData(prefix + "l1.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData l2 = new TileData(prefix + "l2.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData l3 = new TileData(prefix + "l3.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Road, new ScoreArea[] {});
+    public static TileData l1 = new TileData(prefix + "l1.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftRoad1, AreaType.Road, (false, false, false, true)),
+        new ScoreArea(RegionShapes.bottomRoad1, AreaType.Road, (false, false, true, false)),
+        new ScoreArea(RegionShapes.rightRoad1, AreaType.Road, (false, true, false, false)),
+    });
+    public static TileData l2 = new TileData(prefix + "l2.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftRoad1, AreaType.Road, (false, false, false, true)),
+        new ScoreArea(RegionShapes.bottomRoad1, AreaType.Road, (false, false, true, false)),
+        new ScoreArea(RegionShapes.rightRoad1, AreaType.Road, (false, true, false, false)),
+    });
+    public static TileData l3 = new TileData(prefix + "l3.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.topCity, AreaType.City, (true, false, false, false)),
+        new ScoreArea(RegionShapes.leftRoad1, AreaType.Road, (false, false, false, true)),
+        new ScoreArea(RegionShapes.bottomRoad1, AreaType.Road, (false, false, true, false)),
+        new ScoreArea(RegionShapes.rightRoad1, AreaType.Road, (false, true, false, false)),
+    });
 
-    public static TileData m1 = new TileData(prefix + "m1.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData m2 = new TileData(prefix + "m2.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new ScoreArea[] {});
+    public static TileData m1 = new TileData(prefix + "m1.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToRightCity, AreaType.ShieldCity, (true, true, false, false)),
+    });
+    public static TileData m2 = new TileData(prefix + "m2.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToRightCity, AreaType.ShieldCity, (true, true, false, false)),
+    });
 
-    public static TileData n1 = new TileData(prefix + "n1.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData n2 = new TileData(prefix + "n2.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new ScoreArea[] {});
-    public static TileData n3 = new TileData(prefix + "n3.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new ScoreArea[] {});
+    public static TileData n1 = new TileData(prefix + "n1.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToRightCity, AreaType.City, (true, true, false, false)),
+    });
+    public static TileData n2 = new TileData(prefix + "n2.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToRightCity, AreaType.City, (true, true, false, false)),
+    });
+    public static TileData n3 = new TileData(prefix + "n3.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToRightCity, AreaType.City, (true, true, false, false)),
+    });
 
-    public static TileData o1 = new TileData(prefix + "o1.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new ScoreArea[] {});
-    public static TileData o2 = new TileData(prefix + "o2.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new ScoreArea[] {});
+    public static TileData o1 = new TileData(prefix + "o1.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.topToLeftCity, AreaType.ShieldCity, (true, false, false, true)),
+        new ScoreArea(RegionShapes.rightToBottomRoad2, AreaType.Road, (false, true, true, false)),
+    });
+    public static TileData o2 = new TileData(prefix + "o2.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.topToLeftCity, AreaType.ShieldCity, (true, false, false, true)),
+        new ScoreArea(RegionShapes.rightToBottomRoad2, AreaType.Road, (false, true, true, false)),
+    });
 
-    public static TileData p1 = new TileData(prefix + "p1.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new ScoreArea[] {});
-    public static TileData p2 = new TileData(prefix + "p2.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new ScoreArea[] {});
-    public static TileData p3 = new TileData(prefix + "p3.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new ScoreArea[] {});
+    public static TileData p1 = new TileData(prefix + "p1.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.topToLeftCity, AreaType.City, (true, false, false, true)),
+        new ScoreArea(RegionShapes.rightToBottomRoad2, AreaType.Road, (false, true, true, false)),
+    });
+    public static TileData p2 = new TileData(prefix + "p2.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.topToLeftCity, AreaType.City, (true, false, false, true)),
+        new ScoreArea(RegionShapes.rightToBottomRoad2, AreaType.Road, (false, true, true, false)),
+    });
+    public static TileData p3 = new TileData(prefix + "p3.jpg", TileSide.City, TileSide.Road, TileSide.Road, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.topToLeftCity, AreaType.City, (true, false, false, true)),
+        new ScoreArea(RegionShapes.rightToBottomRoad2, AreaType.Road, (false, true, true, false)),
+    });
 
-    public static TileData q =  new TileData(prefix +  "q.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.City, new ScoreArea[] {});
+    public static TileData q =  new TileData(prefix +  "q.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.noBottomCity, AreaType.ShieldCity, (true, true, false, true)),
+    });
 
-    public static TileData r1 = new TileData(prefix + "r1.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.City, new ScoreArea[] {});
-    public static TileData r2 = new TileData(prefix + "r2.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.City, new ScoreArea[] {});
-    public static TileData r3 = new TileData(prefix + "r3.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.City, new ScoreArea[] {});
+    public static TileData r1 = new TileData(prefix + "r1.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.noBottomCity, AreaType.City, (true, true, false, true)),
+    });
+    public static TileData r2 = new TileData(prefix + "r2.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.noBottomCity, AreaType.City, (true, true, false, true)),
+    });
+    public static TileData r3 = new TileData(prefix + "r3.jpg", TileSide.City, TileSide.City, TileSide.Field, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.noBottomCity, AreaType.City, (true, true, false, true)),
+    });
 
-    public static TileData s1 = new TileData(prefix + "s1.jpg", TileSide.City, TileSide.City, TileSide.Road, TileSide.City, new ScoreArea[] {});
-    public static TileData s2 = new TileData(prefix + "s2.jpg", TileSide.City, TileSide.City, TileSide.Road, TileSide.City, new ScoreArea[] {});
+    public static TileData s1 = new TileData(prefix + "s1.jpg", TileSide.City, TileSide.City, TileSide.Road, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.noBottomCity, AreaType.ShieldCity, (true, true, false, true)),
+        new ScoreArea(RegionShapes.bottomRoad2, AreaType.Road, (false, false, true, false)),
+    });
+    public static TileData s2 = new TileData(prefix + "s2.jpg", TileSide.City, TileSide.City, TileSide.Road, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.noBottomCity, AreaType.ShieldCity, (true, true, false, true)),
+        new ScoreArea(RegionShapes.bottomRoad2, AreaType.Road, (false, false, true, false)),
+    });
 
-    public static TileData t =  new TileData(prefix +  "t.jpg", TileSide.City, TileSide.City, TileSide.Road, TileSide.City, new ScoreArea[] {});
+    public static TileData t =  new TileData(prefix +  "t.jpg", TileSide.City, TileSide.City, TileSide.Road, TileSide.City, new [] {
+        new ScoreArea(RegionShapes.noBottomCity, AreaType.City, (true, true, false, true)),
+        new ScoreArea(RegionShapes.bottomRoad2, AreaType.Road, (false, false, true, false)),
+    });
 
-    public static TileData u1 = new TileData(prefix + "u1.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new ScoreArea[] {});
-    public static TileData u2 = new TileData(prefix + "u2.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new ScoreArea[] {});
-    public static TileData u3 = new TileData(prefix + "u3.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new ScoreArea[] {});
-    public static TileData u4 = new TileData(prefix + "u4.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new ScoreArea[] {});
-    public static TileData u5 = new TileData(prefix + "u5.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new ScoreArea[] {});
-    public static TileData u6 = new TileData(prefix + "u6.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new ScoreArea[] {});
-    public static TileData u7 = new TileData(prefix + "u7.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new ScoreArea[] {});
-    public static TileData u8 = new TileData(prefix + "u8.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new ScoreArea[] {});
+    public static TileData u1 = new TileData(prefix + "u1.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToBottomRoad, AreaType.Road, (true, false, true, false)),
+    });
+    public static TileData u2 = new TileData(prefix + "u2.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToBottomRoad, AreaType.Road, (true, false, true, false)),
+    });
+    public static TileData u3 = new TileData(prefix + "u3.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToBottomRoad, AreaType.Road, (true, false, true, false)),
+    });
+    public static TileData u4 = new TileData(prefix + "u4.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToBottomRoad, AreaType.Road, (true, false, true, false)),
+    });
+    public static TileData u5 = new TileData(prefix + "u5.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToBottomRoad, AreaType.Road, (true, false, true, false)),
+    });
+    public static TileData u6 = new TileData(prefix + "u6.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToBottomRoad, AreaType.Road, (true, false, true, false)),
+    });
+    public static TileData u7 = new TileData(prefix + "u7.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToBottomRoad, AreaType.Road, (true, false, true, false)),
+    });
+    public static TileData u8 = new TileData(prefix + "u8.jpg", TileSide.Road, TileSide.Field, TileSide.Road, TileSide.Field, new [] {
+        new ScoreArea(RegionShapes.topToBottomRoad, AreaType.Road, (true, false, true, false)),
+    });
 
-    public static TileData v1 = new TileData(prefix + "v1.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData v2 = new TileData(prefix + "v2.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData v3 = new TileData(prefix + "v3.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData v4 = new TileData(prefix + "v4.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData v5 = new TileData(prefix + "v5.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData v6 = new TileData(prefix + "v6.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData v7 = new TileData(prefix + "v7.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData v8 = new TileData(prefix + "v8.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData v9 = new TileData(prefix + "v9.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new ScoreArea[] {});
+    public static TileData v1 = new TileData(prefix + "v1.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.leftToBottomRoad2, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData v2 = new TileData(prefix + "v2.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.leftToBottomRoad2, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData v3 = new TileData(prefix + "v3.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.leftToBottomRoad2, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData v4 = new TileData(prefix + "v4.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.leftToBottomRoad2, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData v5 = new TileData(prefix + "v5.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.leftToBottomRoad2, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData v6 = new TileData(prefix + "v6.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.leftToBottomRoad2, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData v7 = new TileData(prefix + "v7.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.leftToBottomRoad2, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData v8 = new TileData(prefix + "v8.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.leftToBottomRoad2, AreaType.Road, (false, false, true, true)),
+    });
+    public static TileData v9 = new TileData(prefix + "v9.jpg", TileSide.Field, TileSide.Field, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.leftToBottomRoad2, AreaType.Road, (false, false, true, true)),
+    });
 
-    public static TileData w1 = new TileData(prefix + "w1.jpg", TileSide.Field, TileSide.Road, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData w2 = new TileData(prefix + "w2.jpg", TileSide.Field, TileSide.Road, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData w3 = new TileData(prefix + "w3.jpg", TileSide.Field, TileSide.Road, TileSide.Road, TileSide.Road, new ScoreArea[] {});
-    public static TileData w4 = new TileData(prefix + "w4.jpg", TileSide.Field, TileSide.Road, TileSide.Road, TileSide.Road, new ScoreArea[] {});
+    public static TileData w1 = new TileData(prefix + "w1.jpg", TileSide.Field, TileSide.Road, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.bottomRoad3, AreaType.Road, (false, false, true, false)),
+        new ScoreArea(RegionShapes.rightRoad2, AreaType.Road, (false, true, false, false)),
+        new ScoreArea(RegionShapes.leftRoad2, AreaType.Road, (false, false, false, true)),
+    });
+    public static TileData w2 = new TileData(prefix + "w2.jpg", TileSide.Field, TileSide.Road, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.bottomRoad3, AreaType.Road, (false, false, true, false)),
+        new ScoreArea(RegionShapes.rightRoad2, AreaType.Road, (false, true, false, false)),
+        new ScoreArea(RegionShapes.leftRoad2, AreaType.Road, (false, false, false, true)),
+    });
+    public static TileData w3 = new TileData(prefix + "w3.jpg", TileSide.Field, TileSide.Road, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.bottomRoad3, AreaType.Road, (false, false, true, false)),
+        new ScoreArea(RegionShapes.rightRoad2, AreaType.Road, (false, true, false, false)),
+        new ScoreArea(RegionShapes.leftRoad2, AreaType.Road, (false, false, false, true)),
+    });
+    public static TileData w4 = new TileData(prefix + "w4.jpg", TileSide.Field, TileSide.Road, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.bottomRoad3, AreaType.Road, (false, false, true, false)),
+        new ScoreArea(RegionShapes.rightRoad2, AreaType.Road, (false, true, false, false)),
+        new ScoreArea(RegionShapes.leftRoad2, AreaType.Road, (false, false, false, true)),
+    });
 
-    public static TileData x =  new TileData(prefix +  "x.jpg", TileSide.Road, TileSide.Road, TileSide.Road, TileSide.Road, new ScoreArea[] {});
+    public static TileData x =  new TileData(prefix +  "x.jpg", TileSide.Road, TileSide.Road, TileSide.Road, TileSide.Road, new [] {
+        new ScoreArea(RegionShapes.topRoad, AreaType.Road, (true, false, false, false)),
+        new ScoreArea(RegionShapes.bottomRoad4, AreaType.Road, (false, false, true, false)),
+        new ScoreArea(RegionShapes.rightRoad2, AreaType.Road, (false, true, false, false)),
+        new ScoreArea(RegionShapes.leftRoad1, AreaType.Road, (false, false, false, true)),
+    });
     
     public static List<TileData> all = new List<TileData> {
         a1, a2, b1,
