@@ -240,6 +240,14 @@ offset_bottom = 43.0
 theme_override_font_sizes/font_size = 23
 text = "Next"
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 104.0
+offset_right = 127.0
+offset_bottom = 135.0
+text = "GameOver"
+
 [connection signal="pressed" from="BackButton" to="." method="Exit"]
 [connection signal="mouse_entered" from="MutePupupToggle" to="." method="ShowMusic"]
 [connection signal="mouse_exited" from="MutePupupToggle" to="." method="HideMusic"]
@@ -248,3 +256,4 @@ text = "Next"
 [connection signal="drag_ended" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
 [connection signal="toggled" from="MusicVolume/Button" to="." method="MuteMusic"]
 [connection signal="pressed" from="MusicVolume/Next" to="." method="ChangeMusic"]
+[connection signal="pressed" from="Button" to="." method="GameOver"]
