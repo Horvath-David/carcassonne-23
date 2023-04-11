@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cd1pvabb4s12j" path="res://assets/fonts/JetBrainsMono-Regular.ttf" id="3_g0r27"]
 [ext_resource type="AudioStream" uid="uid://dy3m6knotbu8f" path="res://assets/music/Glorious Morning.mp3" id="4_x0mf3"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("musicPlayer", "muteMusicButton", "startButton")]
+[node name="Control" type="Control" node_paths=PackedStringArray("musicPlayer", "muteMusicButton", "startButton", "musicVolPopUp", "musicVolume")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,8 +15,10 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_wenkv")
 musicPlayer = NodePath("Music")
-muteMusicButton = NodePath("MuteMusic")
+muteMusicButton = NodePath("MusicVolume/Button")
 startButton = NodePath("Button")
+musicVolPopUp = NodePath("MusicVolume")
+musicVolume = NodePath("MusicVolume/HSlider")
 
 [node name="MainMenuBg" type="Sprite2D" parent="."]
 position = Vector2(579, 326)
@@ -78,7 +80,7 @@ theme_override_fonts/font = ExtResource("3_g0r27")
 theme_override_font_sizes/font_size = 120
 text = "Start Game"
 
-[node name="MuteMusic" type="Button" parent="."]
+[node name="MusicPopup" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1097.0
 offset_top = 15.0
@@ -104,6 +106,41 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "X"
 
+[node name="MusicVolume" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 834.0
+offset_top = 12.0
+offset_right = 1088.0
+offset_bottom = 64.0
+
+[node name="ColorRect" type="ColorRect" parent="MusicVolume"]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 52.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="HSlider" type="HSlider" parent="MusicVolume"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 143.0
+offset_bottom = 50.0
+value = 100.0
+
+[node name="Button" type="Button" parent="MusicVolume"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 3.0
+offset_right = 239.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 23
+toggle_mode = true
+text = "Stop"
+
 [connection signal="pressed" from="Button" to="." method="Start"]
-[connection signal="toggled" from="MuteMusic" to="." method="MuteMusic"]
+[connection signal="toggled" from="MusicPopup" to="." method="MusicPopup"]
 [connection signal="pressed" from="BackButton" to="." method="Exit"]
+[connection signal="drag_ended" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
+[connection signal="toggled" from="MusicVolume/Button" to="." method="MuteMusic"]
