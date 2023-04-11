@@ -1,12 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://qh0nhssqlu3h"]
+[gd_scene load_steps=3 format=3 uid="uid://qh0nhssqlu3h"]
 
 [ext_resource type="Script" path="res://scripts/UIManager.cs" id="1_foagf"]
-[ext_resource type="AudioStream" uid="uid://c5p5m4nl36a4m" path="res://assets/music/gameplay.mp3" id="2_m7b6k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_phq8c"]
 font_size = 19
 
-[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect", "musicPlayer", "muteMusicButton", "waitLabel", "gameOverLabel", "musicVolPopUp", "musicVolume")]
+[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect", "musicPlayer", "muteMusicButton", "waitLabel", "gameOverLabel", "musicVolPopUp", "musicVolume", "nowPlayingFrame", "nowPlaying", "nextMusic")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +23,9 @@ waitLabel = NodePath("Wait")
 gameOverLabel = NodePath("GameOver")
 musicVolPopUp = NodePath("MusicVolume")
 musicVolume = NodePath("MusicVolume/HSlider")
+nowPlayingFrame = NodePath("NowPlaying")
+nowPlaying = NodePath("NowPlaying/CurrentlyPlaying")
+nextMusic = NodePath("MusicVolume/Next")
 
 [node name="Frame" type="Control" parent="."]
 anchors_preset = 0
@@ -102,6 +104,7 @@ offset_right = -1100.0
 offset_bottom = -596.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Exit the game"
 text = "X"
 
 [node name="NextTile" type="TextureRect" parent="."]
@@ -139,11 +142,11 @@ offset_left = 1097.0
 offset_top = 15.0
 offset_right = 1137.0
 offset_bottom = 55.0
+tooltip_text = "Music settings"
 toggle_mode = true
 text = "♫"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_m7b6k")
 
 [node name="Wait" type="Label" parent="."]
 layout_mode = 0
@@ -164,26 +167,58 @@ offset_bottom = 372.0
 theme_override_font_sizes/font_size = 100
 text = "Game Over"
 
+[node name="NowPlaying" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 12.0
+offset_right = 1089.0
+offset_bottom = 64.0
+
+[node name="ColorRect" type="ColorRect" parent="NowPlaying"]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 52.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="CurrentlyPlaying" type="Label" parent="NowPlaying"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 20.0
+offset_right = 438.0
+offset_bottom = 50.0
+text = "asd"
+
+[node name="Label" type="Label" parent="NowPlaying"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 139.0
+offset_bottom = 23.0
+text = "Now playing:"
+
 [node name="MusicVolume" type="Control" parent="."]
 visible = false
 anchors_preset = 0
-offset_left = 834.0
+offset_left = 773.0
 offset_top = 12.0
 offset_right = 1088.0
 offset_bottom = 64.0
 
 [node name="ColorRect" type="ColorRect" parent="MusicVolume"]
 layout_mode = 0
-offset_right = 254.0
+offset_left = -2.0
+offset_right = 315.0
 offset_bottom = 52.0
 color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="HSlider" type="HSlider" parent="MusicVolume"]
 layout_mode = 0
 offset_left = 5.0
-offset_top = 1.0
+offset_top = -2.0
 offset_right = 143.0
-offset_bottom = 50.0
+offset_bottom = 47.0
 value = 100.0
 
 [node name="Button" type="Button" parent="MusicVolume"]
@@ -191,12 +226,23 @@ layout_mode = 0
 offset_left = 170.0
 offset_top = 3.0
 offset_right = 239.0
-offset_bottom = 42.0
+offset_bottom = 43.0
 theme_override_font_sizes/font_size = 23
 toggle_mode = true
 text = "Stop"
 
+[node name="Next" type="Button" parent="MusicVolume"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 3.0
+offset_right = 307.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 23
+text = "Next"
+
 [connection signal="pressed" from="BackButton" to="." method="Exit"]
 [connection signal="toggled" from="MutePupupToggle" to="." method="MusicPopup"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="ChangeMusic"]
 [connection signal="drag_ended" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
 [connection signal="toggled" from="MusicVolume/Button" to="." method="MuteMusic"]
+[connection signal="pressed" from="MusicVolume/Next" to="." method="ChangeMusic"]

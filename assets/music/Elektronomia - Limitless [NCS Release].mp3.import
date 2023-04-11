@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcop4m3levvy"
+path="res://.godot/imported/Elektronomia - Limitless [NCS Release].mp3-f840815b2ca1b5d4d442fa2161fcf934.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Elektronomia - Limitless [NCS Release].mp3"
+dest_files=["res://.godot/imported/Elektronomia - Limitless [NCS Release].mp3-f840815b2ca1b5d4d442fa2161fcf934.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

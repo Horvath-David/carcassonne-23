@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b8kp63dqjlroh"
+path="res://.godot/imported/Prismo - Weakness [NCS Release].mp3-b1af52a24ec31f91c3dc7527c4c3b4ba.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Prismo - Weakness [NCS Release].mp3"
+dest_files=["res://.godot/imported/Prismo - Weakness [NCS Release].mp3-b1af52a24ec31f91c3dc7527c4c3b4ba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

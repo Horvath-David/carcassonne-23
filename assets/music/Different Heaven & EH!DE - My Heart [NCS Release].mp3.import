@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d2rt0ffv81awg"
+path="res://.godot/imported/Different Heaven & EH!DE - My Heart [NCS Release].mp3-9d5efd976d3a4f1114522415e73c2f7e.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Different Heaven & EH!DE - My Heart [NCS Release].mp3"
+dest_files=["res://.godot/imported/Different Heaven & EH!DE - My Heart [NCS Release].mp3-9d5efd976d3a4f1114522415e73c2f7e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

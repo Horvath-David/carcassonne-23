@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmnby4su55xxh"
+path="res://.godot/imported/JPB - High [NCS Release].mp3-9275803b176b1ba8383bb7bf213ef61c.mp3str"
+
+[deps]
+
+source_file="res://assets/music/JPB - High [NCS Release].mp3"
+dest_files=["res://.godot/imported/JPB - High [NCS Release].mp3-9275803b176b1ba8383bb7bf213ef61c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

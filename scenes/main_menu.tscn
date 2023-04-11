@@ -86,6 +86,7 @@ offset_left = 1097.0
 offset_top = 15.0
 offset_right = 1137.0
 offset_bottom = 55.0
+tooltip_text = "Music settings"
 toggle_mode = true
 text = "♫"
 
@@ -104,6 +105,7 @@ offset_right = -1100.0
 offset_bottom = -596.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Exit the game"
 text = "X"
 
 [node name="MusicVolume" type="Control" parent="."]

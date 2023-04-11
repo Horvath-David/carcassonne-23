@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c30srp8grf7v2"
+path="res://.godot/imported/Sharks - Shiver [NCS Release].mp3-10c5700037adf58095a4be8b8e477a60.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Sharks - Shiver [NCS Release].mp3"
+dest_files=["res://.godot/imported/Sharks - Shiver [NCS Release].mp3-10c5700037adf58095a4be8b8e477a60.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
