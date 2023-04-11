@@ -79,6 +79,7 @@ public partial class Manager : Node2D {
     }
 
     public static void PlaceTile(Tile tile) {
+        //TODO: rewrite with gameState.Move()
         if (gameState.gameOver) return;
         
         gameState.board.Set(tile.pos.X, tile.pos.Y, tile);
