@@ -32,8 +32,12 @@ public partial class AreaHandler : Area2D {
             }
             if (buttonEvent.ButtonIndex == MouseButton.Left && !buttonEvent.Pressed) {
                 GetParent<ClickableArea>().OnMouseUp();
-                GetParent<ClickableArea>().OnClick();
+                OnClick();
             }
         }
+    }
+
+    public virtual void OnClick() {
+        GetParent<ClickableArea>().OnClick();
     }
 }

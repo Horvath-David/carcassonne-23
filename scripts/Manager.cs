@@ -16,6 +16,9 @@ public partial class Manager : Node2D {
     public static List<Tile> addBuffer = new List<Tile>();
     public static List<(int X, int Y)> emptyPlaceBuffer = new List<(int X, int Y)>();
 
+    public static Dictionary<(int X, int Y, int idx), ScoreAreaController> areaControllers =
+        new Dictionary<(int X, int Y, int idx), ScoreAreaController>();
+
     public static int rotation = 0;
     public static bool shouldCheck = false;
 
@@ -58,6 +61,7 @@ public partial class Manager : Node2D {
             instance.Texture = GD.Load<Texture2D>(tile.type.path);
             instance.Rotation = (float)(Math.PI / 180f) * tile.rotation * 90f;
             instance.tile = tile;
+            if (tile.type == Tiles.st) instance.canPlaceMeeple = false;
             boardNode.AddChild(instance);
         }
         addBuffer = new List<Tile>();
@@ -98,6 +102,10 @@ public partial class Manager : Node2D {
         ChangeRotation(0);
 
         shouldCheck = true;
+    }
+
+    public static void PlaceMeeple(int x, int y, int idx) {
+        gameState.PlaceMeeple(x, y, idx);
     }
 
     public static void ChangeRotation(int rotation = -1) {

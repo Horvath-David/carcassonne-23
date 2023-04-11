@@ -5,18 +5,27 @@ using System.Collections.Generic;
 public partial class TileController : Sprite2D, ClickableArea {
     public Tile tile;
     public List<ScoreAreaController> areaControllers = new List<ScoreAreaController>();
+    public bool canPlaceMeeple = true;
 
     public override void _Ready() {
-        if (tile.areas.Find(a => Manager.gameState.regions.Find(r => r.Connects(a) && r.meeples.Values.Count != 0) != null) != null) {
-            tile.canPlaceMeeple = false;
-        }
-        
         foreach (var area in tile.areas) {
             var instance = Manager.scoreArea.Instantiate() as ScoreAreaController;
             instance.scoreArea = area;
             instance.pos = tile.pos;
             instance.index = tile.areas.IndexOf(area);
+            areaControllers.Add(instance);
             AddChild(instance);
+        }
+
+        foreach (var controller in areaControllers.FindAll(a => Manager.gameState.GetRegion(a.scoreArea).canPlaceMeeples)) {
+            if (Manager.gameState.lite) break;
+            controller.poly.Color = new Color(Colors.Red, 0.5f);
+        }
+
+        if (!canPlaceMeeple) {
+            foreach (var area in areaControllers) {
+                area.poly.Color = Colors.Transparent;
+            }
         }
     }
 
@@ -24,11 +33,12 @@ public partial class TileController : Sprite2D, ClickableArea {
         GD.Print(tile.type.path);
     }
 
-    public void PlaceMeeple() {
-        if (!tile.canPlaceMeeple) return;
+    public void PlaceMeeple(int index) {
+        if (!canPlaceMeeple) return;
 
         // do stuff
-        
-        tile.canPlaceMeeple = false;
+
+        Manager.gameState.GetRegion(tile.areas[index]).canPlaceMeeples = false;
+        canPlaceMeeple = false;
     }
 }

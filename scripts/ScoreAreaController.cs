@@ -13,4 +13,8 @@ public partial class ScoreAreaController : AreaHandler {
         collision.Polygon = scoreArea.shape;
         poly.Polygon = scoreArea.shape;
     }
+
+    public override void OnClick() {
+        GetParent<TileController>().PlaceMeeple(index);
+    }
 }

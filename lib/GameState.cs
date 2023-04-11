@@ -62,8 +62,8 @@ public class GameState {
         throw new NotImplementedException();
     }
 
-    public bool CanPlaceMeeple(ScoreArea area) {
-        return regions.Find(r => r.Connects(area)) == null;
+    public ScoreRegion GetRegion(ScoreArea area) {
+        return regions.Find(r => r.areas.Find(a => a == area) != null);
     }
 
     public (bool up, bool right, bool down, bool left) PlaceTile(Tile tile) {
@@ -113,9 +113,7 @@ public class GameState {
                 ix = regions.IndexOf(connects[0]);
 
                 if (regions[ix].meeples.Values.Count != 0) {
-                    var t = board.Get(tile.pos.X, tile.pos.Y);
-                    t.canPlaceMeeple = false;
-                    board.Set(tile.pos.X, tile.pos.Y, t);
+                    regions[ix].canPlaceMeeples = false;
                 }
             }
             if (connects.Count == 0) {
@@ -140,7 +138,7 @@ public class GameState {
         return result;
     }
 
-    public void PlaceMeeple(int X, int Y, int idx, int player) {
+    public void PlaceMeeple(int X, int Y, int idx) {
         throw new NotImplementedException();
     }
 

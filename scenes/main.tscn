@@ -1,19 +1,418 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0ua5kvxivf26"]
+[gd_scene load_steps=19 format=3 uid="uid://b0ua5kvxivf26"]
 
+[ext_resource type="Script" path="res://scripts/Boss.cs" id="1_fqth3"]
 [ext_resource type="PackedScene" uid="uid://dlxgnsvxnvtqu" path="res://scenes/game_scene.tscn" id="1_td3f1"]
 [ext_resource type="PackedScene" uid="uid://qh0nhssqlu3h" path="res://scenes/ui_scene.tscn" id="2_pg17a"]
 
-[node name="Main" type="Control"]
+[sub_resource type="Theme" id="Theme_0jqnu"]
+Button/font_sizes/font_size = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3i4dg"]
+
+[sub_resource type="Theme" id="Theme_78lkr"]
+Button/styles/focus = SubResource("StyleBoxEmpty_3i4dg")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4dsm"]
+
+[sub_resource type="Theme" id="Theme_0n1fx"]
+Button/styles/focus = SubResource("StyleBoxEmpty_j4dsm")
+
+[sub_resource type="FontVariation" id="FontVariation_tqeop"]
+
+[sub_resource type="Theme" id="Theme_5hpp6"]
+Button/font_sizes/font_size = 10
+Button/fonts/font = SubResource("FontVariation_tqeop")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8s8xw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8xdwd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_shlo7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6tiv7"]
+
+[sub_resource type="Theme" id="Theme_rmwob"]
+Button/styles/focus = SubResource("StyleBoxEmpty_8s8xw")
+Button/styles/hover = SubResource("StyleBoxEmpty_8xdwd")
+Button/styles/normal = SubResource("StyleBoxEmpty_shlo7")
+Button/styles/pressed = SubResource("StyleBoxEmpty_6tiv7")
+
+[sub_resource type="FontVariation" id="FontVariation_d5b50"]
+
+[sub_resource type="Theme" id="Theme_s4abb"]
+Button/font_sizes/font_size = 10
+Button/fonts/font = SubResource("FontVariation_d5b50")
+
+[sub_resource type="Theme" id="Theme_2feca"]
+Button/font_sizes/font_size = 20
+
+[node name="Boss" type="Node" node_paths=PackedStringArray("player1", "player2", "player3", "player4", "colorPicker", "soloButton", "normalButton")]
+script = ExtResource("1_fqth3")
+player1 = NodePath("Setup/Playerbox1")
+player2 = NodePath("Setup/Playerbox2")
+player3 = NodePath("Setup/Playerbox3")
+player4 = NodePath("Setup/Playerbox4")
+colorPicker = NodePath("Setup/ColorPicker")
+soloButton = NodePath("Setup/Settings/SoloButton")
+normalButton = NodePath("Setup/Settings/NormalButton")
+
+[node name="Main" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="GameScene" parent="." instance=ExtResource("1_td3f1")]
+[node name="GameScene" parent="Main" instance=ExtResource("1_td3f1")]
 
-[node name="UIScene" parent="." instance=ExtResource("2_pg17a")]
+[node name="UIScene" parent="Main" instance=ExtResource("2_pg17a")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 28.8
 anchor_bottom = 16.2
+
+[node name="Setup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Setup"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.207843, 0.207843, 0.207843, 1)
+metadata/_edit_lock_ = true
+
+[node name="Frame" type="Control" parent="Setup"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="topleft" type="ColorRect" parent="Setup/Frame"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="top" type="ColorRect" parent="Setup/Frame"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 12.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="bottom" type="ColorRect" parent="Setup/Frame"]
+layout_mode = 0
+offset_top = 636.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="left" type="ColorRect" parent="Setup/Frame"]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="right" type="ColorRect" parent="Setup/Frame"]
+layout_mode = 0
+offset_left = 1140.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="BackButton" type="Button" parent="Setup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Exit the game"
+text = "X"
+
+[node name="Settings" type="Control" parent="Setup"]
+anchors_preset = 0
+offset_left = 687.0
+offset_top = 27.0
+offset_right = 1126.0
+offset_bottom = 622.0
+
+[node name="PlayButton" type="Button" parent="Setup/Settings"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 527.0
+offset_right = 341.0
+offset_bottom = 587.0
+theme = SubResource("Theme_0jqnu")
+text = "Play!"
+
+[node name="SoloButton" type="Button" parent="Setup/Settings"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 19.0
+offset_right = 228.0
+offset_bottom = 59.0
+theme = SubResource("Theme_78lkr")
+toggle_mode = true
+button_pressed = true
+text = "Solo"
+
+[node name="NormalButton" type="Button" parent="Setup/Settings"]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 19.0
+offset_right = 349.0
+offset_bottom = 59.0
+theme = SubResource("Theme_0n1fx")
+toggle_mode = true
+text = "Normal"
+
+[node name="ColorPicker" type="ColorRect" parent="Setup"]
+visible = false
+layout_mode = 2
+offset_left = 778.0
+offset_top = 24.0
+offset_right = 1129.0
+offset_bottom = 623.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="Button" type="Button" parent="Setup/ColorPicker"]
+layout_mode = 2
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 33.0
+offset_bottom = 31.0
+theme = SubResource("Theme_5hpp6")
+text = "X"
+
+[node name="ColorPicker" type="ColorPicker" parent="Setup/ColorPicker"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 31.0
+offset_right = 326.0
+offset_bottom = 599.0
+alignment = 1
+edit_alpha = false
+picker_shape = 2
+can_add_swatches = false
+presets_visible = false
+
+[node name="Playerbox1" type="ColorRect" parent="Setup"]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 238.0
+offset_right = 471.0
+offset_bottom = 358.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Setup/Playerbox1"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 60.0
+color = Color(0.258824, 0.827451, 1, 1)
+
+[node name="Button" type="Button" parent="Setup/Playerbox1/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_rmwob")
+
+[node name="LineEdit" type="LineEdit" parent="Setup/Playerbox1"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 77.0
+offset_right = 105.0
+offset_bottom = 108.0
+text = "Player 1"
+
+[node name="Playerbox2" type="ColorRect" parent="Setup"]
+visible = false
+layout_mode = 0
+offset_left = 459.0
+offset_top = 176.0
+offset_right = 579.0
+offset_bottom = 296.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Setup/Playerbox2"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 60.0
+color = Color(1, 0.258824, 0.258824, 1)
+
+[node name="Button" type="Button" parent="Setup/Playerbox2/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_rmwob")
+
+[node name="LineEdit" type="LineEdit" parent="Setup/Playerbox2"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 77.0
+offset_right = 105.0
+offset_bottom = 108.0
+text = "Player 2"
+
+[node name="Button" type="Button" parent="Setup/Playerbox2"]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 28.0
+offset_bottom = 27.0
+theme = SubResource("Theme_s4abb")
+text = "X"
+
+[node name="ColorRect2" type="ColorRect" parent="Setup/Playerbox2"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.54902)
+
+[node name="Button" type="Button" parent="Setup/Playerbox2/ColorRect2"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 18.0
+offset_right = 82.0
+offset_bottom = 62.0
+theme = SubResource("Theme_2feca")
+text = "+"
+
+[node name="Playerbox3" type="ColorRect" parent="Setup"]
+visible = false
+layout_mode = 0
+offset_left = 217.0
+offset_top = 378.0
+offset_right = 337.0
+offset_bottom = 498.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Setup/Playerbox3"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 60.0
+color = Color(0.121569, 0.878431, 0.34902, 1)
+
+[node name="Button" type="Button" parent="Setup/Playerbox3/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_rmwob")
+
+[node name="LineEdit" type="LineEdit" parent="Setup/Playerbox3"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 77.0
+offset_right = 105.0
+offset_bottom = 108.0
+text = "Player 3"
+
+[node name="Button" type="Button" parent="Setup/Playerbox3"]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 28.0
+offset_bottom = 27.0
+theme = SubResource("Theme_s4abb")
+text = "X"
+
+[node name="ColorRect2" type="ColorRect" parent="Setup/Playerbox3"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.54902)
+
+[node name="Button" type="Button" parent="Setup/Playerbox3/ColorRect2"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 18.0
+offset_right = 82.0
+offset_bottom = 62.0
+theme = SubResource("Theme_2feca")
+text = "+"
+
+[node name="Playerbox4" type="ColorRect" parent="Setup"]
+visible = false
+layout_mode = 0
+offset_left = 459.0
+offset_top = 378.0
+offset_right = 579.0
+offset_bottom = 498.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Setup/Playerbox4"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 60.0
+color = Color(0.960784, 0.917647, 0.0941176, 1)
+
+[node name="Button" type="Button" parent="Setup/Playerbox4/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_rmwob")
+
+[node name="LineEdit" type="LineEdit" parent="Setup/Playerbox4"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 77.0
+offset_right = 105.0
+offset_bottom = 108.0
+text = "Player 4"
+
+[node name="Button" type="Button" parent="Setup/Playerbox4"]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 28.0
+offset_bottom = 27.0
+theme = SubResource("Theme_s4abb")
+text = "X"
+
+[node name="ColorRect2" type="ColorRect" parent="Setup/Playerbox4"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.54902)
+
+[node name="Button" type="Button" parent="Setup/Playerbox4/ColorRect2"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 18.0
+offset_right = 82.0
+offset_bottom = 62.0
+theme = SubResource("Theme_2feca")
+text = "+"
+
+[connection signal="pressed" from="Setup/BackButton" to="." method="Quit"]
+[connection signal="pressed" from="Setup/Settings/PlayButton" to="." method="Play"]
+[connection signal="pressed" from="Setup/Settings/SoloButton" to="." method="PressSolo"]
+[connection signal="pressed" from="Setup/Settings/NormalButton" to="." method="PressNormal"]
+[connection signal="pressed" from="Setup/ColorPicker/Button" to="." method="CloseColorPicker"]
+[connection signal="color_changed" from="Setup/ColorPicker/ColorPicker" to="." method="ChangeColor"]
+[connection signal="pressed" from="Setup/Playerbox1/ColorRect/Button" to="." method="OpenColorPicker" binds= [1]]
+[connection signal="pressed" from="Setup/Playerbox2/ColorRect/Button" to="." method="OpenColorPicker" binds= [2]]
+[connection signal="pressed" from="Setup/Playerbox2/Button" to="." method="DeletePlayer" binds= ["Setup/Playerbox2"]]
+[connection signal="pressed" from="Setup/Playerbox2/ColorRect2/Button" to="." method="AddPlayer" binds= [2]]
+[connection signal="pressed" from="Setup/Playerbox3/ColorRect/Button" to="." method="OpenColorPicker" binds= [3]]
+[connection signal="pressed" from="Setup/Playerbox3/Button" to="." method="DeletePlayer" binds= [3]]
+[connection signal="pressed" from="Setup/Playerbox3/ColorRect2/Button" to="." method="AddPlayer" binds= [3]]
+[connection signal="pressed" from="Setup/Playerbox4/ColorRect/Button" to="." method="OpenColorPicker" binds= [4]]
+[connection signal="pressed" from="Setup/Playerbox4/Button" to="." method="DeletePlayer" binds= [4]]
+[connection signal="pressed" from="Setup/Playerbox4/ColorRect2/Button" to="." method="AddPlayer" binds= [4]]

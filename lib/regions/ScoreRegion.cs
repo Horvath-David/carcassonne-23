@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public enum Side {
     Up, Right, Down, Left
@@ -11,6 +12,7 @@ public abstract class ScoreRegion {
 
     public Dictionary<int, int> meeples = new Dictionary<int, int>();
     public GameState state;
+    public bool canPlaceMeeples = true;
 
     public ScoreRegion(GameState state) {
         this.state = state;
@@ -33,6 +35,11 @@ public abstract class ScoreRegion {
         }
 
         return null;
+    }
+
+    public int GetOwner() {
+        var sorted = from entry in meeples orderby entry.Value descending select entry.Key;
+        return sorted.First();
     }
 
     public virtual int GetScore(bool lite = false) {
