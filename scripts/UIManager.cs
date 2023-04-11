@@ -18,6 +18,7 @@ public partial class UIManager : Control {
 
     public int Volume = 0;
     public bool gameEnded = false;
+    public bool paused = false;
     
     public List<string> musicList = new List<string>{
         "Sharks - Shiver [NCS Release]", 
@@ -67,7 +68,8 @@ public partial class UIManager : Control {
             nowPlayingFrame.Modulate = new Color(1, 1, 1, 1 - (i / 10));
             await ToSignal(GetTree().CreateTimer(0.005f), "timeout");
         }
-        nextMusic.Disabled = false;
+
+        if (!paused) nextMusic.Disabled = false;
         nextMusic.Text = "Next";
     }
 
@@ -98,7 +100,7 @@ public partial class UIManager : Control {
             nowPlayingFrame.Modulate = new Color(1, 1, 1, 1 - (i / 10));
             await ToSignal(GetTree().CreateTimer(0.005f), "timeout");
         }
-        nextMusic.Disabled = false;
+        if (!paused) nextMusic.Disabled = false;
         nextMusic.Text = "Next";
     }
 
@@ -149,12 +151,14 @@ public partial class UIManager : Control {
         {
             nextMusic.Disabled = false;
             musicPlayer.StreamPaused = false;
+            paused = false;
             muteMusicButton.Text = "Stop";
         }
         else
         {
             nextMusic.Disabled = true;
             musicPlayer.StreamPaused = true;
+            paused = true;
             muteMusicButton.Text = "Play";
         }
     }
