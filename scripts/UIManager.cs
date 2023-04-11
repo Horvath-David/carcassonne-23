@@ -138,9 +138,10 @@ public partial class UIManager : Control {
         gameEnded = true;
         waitLabel.Show();
         for (int i = Volume * (-1); i <= 40; i++) {
-            musicPlayer.VolumeDb = i*(-1);
+            musicPlayer.VolumeDb = i * (-1);
             await ToSignal(GetTree().CreateTimer(0.00005f), "timeout");
         }
+
         musicPlayer.Stop();
         musicPlayer.Stream = GD.Load<AudioStream>("res://assets/music/Directed by Robert B. Weide.mp3");
         musicPlayer.VolumeDb = 0;
@@ -150,12 +151,12 @@ public partial class UIManager : Control {
         await ToSignal(GetTree().CreateTimer(30.0f), "timeout");
         waitLabel.Show();
         for (int i = 0; i <= 40; i++) {
-            musicPlayer.VolumeDb = i*(-1);
+            musicPlayer.VolumeDb = i * (-1);
             await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
         }
         waitLabel.Hide();
     }
-    
+
     public void Exit() {
         GetTree().Quit();
     }
