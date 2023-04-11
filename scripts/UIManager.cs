@@ -19,6 +19,7 @@ public partial class UIManager : Control {
     public int Volume = 0;
     public bool gameEnded = false;
     public bool paused = false;
+    public bool nowPlayingAnim = false;
     
     public List<string> musicList = new List<string>{
         "Sharks - Shiver [NCS Release]", 
@@ -47,6 +48,7 @@ public partial class UIManager : Control {
 
 
     public async override void _Ready() {
+        nowPlayingAnim = true;
         nextMusic.Disabled = true;
         nextMusic.Text = "Wait";
         // selects the first music randomly
@@ -71,9 +73,11 @@ public partial class UIManager : Control {
 
         if (!paused) nextMusic.Disabled = false;
         nextMusic.Text = "Next";
+        nowPlayingAnim = false;
     }
 
     public async void ChangeMusic() {
+        nowPlayingAnim = true;
         musicPlayer.Stop();
         nextMusic.Disabled = true;
         nextMusic.Text = "Wait";
@@ -102,6 +106,25 @@ public partial class UIManager : Control {
         }
         if (!paused) nextMusic.Disabled = false;
         nextMusic.Text = "Next";
+        nowPlayingAnim = false;
+    }
+
+    public async void ShowMusic() {
+        if (!nowPlayingAnim) {
+            for (float i = 0; i <= 10; i++)
+            {
+                nowPlayingFrame.Modulate = new Color(1, 1, 1, i / 10);
+                await ToSignal(GetTree().CreateTimer(0.005f), "timeout");
+            }
+        }
+    }
+    public async void HideMusic() {
+        if (!nowPlayingAnim) {
+            for (float i = 0; i <= 10; i++) {
+                nowPlayingFrame.Modulate = new Color(1, 1, 1, 1 - (i / 10));
+                await ToSignal(GetTree().CreateTimer(0.005f), "timeout");
+            }
+        }
     }
 
     public async void SetLeft(int left) {
