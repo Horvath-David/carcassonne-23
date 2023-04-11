@@ -15,6 +15,8 @@ public partial class TileController : Sprite2D, ClickableArea {
             foreach (var area in tile.areas) {
                 var instance = Manager.scoreArea.Instantiate() as ScoreAreaController;
                 instance.scoreArea = area;
+                instance.pos = tile.pos;
+                instance.index = tile.areas.IndexOf(area);
                 AddChild(instance);
             }
         }

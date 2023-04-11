@@ -55,6 +55,14 @@ public class GameState {
         return scoreRegions.Find(r => r.Connects(area)) == null;
     }
 
+    public (bool, bool, bool, bool) Move(Tile tile) {
+        throw new NotImplementedException();
+    }
+
+    public void PlaceMeeple(int X, int Y, int idx, int player) {
+        throw new NotImplementedException();
+    }
+
     // When placing tiles and searching for regions, go over all, Connects(), if one found add, if two found merge and add
     // If Connects() to any region, don't allow placing meeples
 }

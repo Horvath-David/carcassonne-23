@@ -4,6 +4,8 @@ using System;
 public partial class ScoreAreaController : AreaHandler {
     public ScoreArea scoreArea;
     public Polygon2D poly;
+    public (int X, int Y) pos;
+    public int index;
 
     public override void _Ready() {
         base._Ready();
