@@ -184,17 +184,17 @@ color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="CurrentlyPlaying" type="Label" parent="NowPlaying"]
 layout_mode = 0
-offset_left = 1.0
+offset_left = 4.0
 offset_top = 20.0
-offset_right = 438.0
+offset_right = 441.0
 offset_bottom = 50.0
 text = "asd"
 
 [node name="Label" type="Label" parent="NowPlaying"]
 layout_mode = 0
-offset_left = 1.0
+offset_left = 4.0
 offset_top = -3.0
-offset_right = 139.0
+offset_right = 142.0
 offset_bottom = 23.0
 text = "Now playing:"
 
@@ -241,6 +241,8 @@ theme_override_font_sizes/font_size = 23
 text = "Next"
 
 [connection signal="pressed" from="BackButton" to="." method="Exit"]
+[connection signal="mouse_entered" from="MutePupupToggle" to="." method="ShowMusic"]
+[connection signal="mouse_exited" from="MutePupupToggle" to="." method="HideMusic"]
 [connection signal="toggled" from="MutePupupToggle" to="." method="MusicPopup"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="ChangeMusic"]
 [connection signal="drag_ended" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
