@@ -27,6 +27,10 @@ window/stretch/aspect="ignore"
 
 project/assembly_name="test2"
 
+[gui]
+
+common/snap_controls_to_pixels=false
+
 [input]
 
 board_zoom_in={
