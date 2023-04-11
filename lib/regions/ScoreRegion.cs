@@ -10,26 +10,53 @@ public abstract class ScoreRegion {
     public List<(int, int, Side)> openSides = new List<(int, int, Side)>();
 
     public Dictionary<int, int> meeples = new Dictionary<int, int>();
+    public GameState state;
 
-    public int GetScore() {
+    public ScoreRegion(GameState state) {
+        this.state = state;
+    }
+
+    public static ScoreRegion FromType(GameState state, AreaType type) {
+        switch (type) {
+            case AreaType.City:
+                return new CityRegion(state);
+                break;
+            case AreaType.ShieldCity:
+                return new CityRegion(state);
+                break;
+            case AreaType.Monastery:
+                return new MonasteryRegion(state);
+                break;
+            case AreaType.Road:
+                return new RoadRegion(state);
+                break;
+        }
+
+        return null;
+    }
+
+    public virtual int GetScore(bool lite = false) {
         throw new NotImplementedException();
     }
 
-    public bool IsComplete() {
+    public virtual bool IsComplete() {
         return openSides.Count == 0;
     }
 
     public bool Connects(ScoreArea area) {
-        if (areas.Find(a => a.type == area.type && a.pos == (area.pos.X + 1, area.pos.Y) && a.sides.left && area.sides.right) != null) {
+        var type = area.type;
+        if (type == AreaType.ShieldCity) type = AreaType.City;
+        
+        if (areas.Find(a => a.type == type && a.pos == (area.pos.X + 1, area.pos.Y) && a.sides.left && area.sides.right) != null) {
             return true;
         }
-        if (areas.Find(a => a.type == area.type && a.pos == (area.pos.X - 1, area.pos.Y) && a.sides.right && area.sides.left) != null) {
+        if (areas.Find(a => a.type == type && a.pos == (area.pos.X - 1, area.pos.Y) && a.sides.right && area.sides.left) != null) {
             return true;
         }
-        if (areas.Find(a => a.type == area.type && a.pos == (area.pos.X, area.pos.Y + 1) && a.sides.down && area.sides.up) != null) {
+        if (areas.Find(a => a.type == type && a.pos == (area.pos.X, area.pos.Y + 1) && a.sides.down && area.sides.up) != null) {
             return true;
         }
-        if (areas.Find(a => a.type == area.type && a.pos == (area.pos.X, area.pos.Y - 1) && a.sides.up && area.sides.down) != null) {
+        if (areas.Find(a => a.type == type && a.pos == (area.pos.X, area.pos.Y - 1) && a.sides.up && area.sides.down) != null) {
             return true;
         }
 

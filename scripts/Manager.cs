@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
 
 public enum GamePhase {
     Running,
@@ -74,37 +75,23 @@ public partial class Manager : Node2D {
         if (emptyPlaceBuffer.Count > 0 || shouldCheck) {
             HideFrames();
             shouldCheck = false;
+            var score = gameState.regions.Select(r => r.GetScore(true)).Aggregate(0, (a, b) => a + b);
+            uiManager.SetScore(score);
         }
         emptyPlaceBuffer = new List<(int X, int Y)>();
     }
 
     public static void PlaceTile(Tile tile) {
-        //TODO: rewrite with gameState.Move()
         if (gameState.gameOver) return;
-        
-        gameState.board.Set(tile.pos.X, tile.pos.Y, tile);
+
+        var sides = gameState.PlaceTile(tile);
         addBuffer.Add(gameState.board.Get(tile.pos.X, tile.pos.Y));
 
-        gameState.openPlaces.Remove((tile.pos.X, tile.pos.Y));
+        if (sides.up) emptyPlaceBuffer.Add((tile.pos.X, tile.pos.Y + 1));
+        if (sides.right) emptyPlaceBuffer.Add((tile.pos.X + 1, tile.pos.Y));
+        if (sides.down) emptyPlaceBuffer.Add((tile.pos.X, tile.pos.Y - 1));
+        if (sides.left) emptyPlaceBuffer.Add((tile.pos.X - 1, tile.pos.Y));
 
-        if (gameState.board.Get(tile.pos.X + 1, tile.pos.Y) == null) {
-            gameState.openPlaces.Add((tile.pos.X + 1, tile.pos.Y));
-            emptyPlaceBuffer.Add((tile.pos.X + 1, tile.pos.Y));
-        }
-        if (gameState.board.Get(tile.pos.X - 1, tile.pos.Y) == null) {
-            gameState.openPlaces.Add((tile.pos.X - 1, tile.pos.Y));
-            emptyPlaceBuffer.Add((tile.pos.X - 1, tile.pos.Y));
-        }
-        if (gameState.board.Get(tile.pos.X, tile.pos.Y + 1) == null) {
-            gameState.openPlaces.Add((tile.pos.X, tile.pos.Y + 1));
-            emptyPlaceBuffer.Add((tile.pos.X, tile.pos.Y + 1));
-        }
-        if (gameState.board.Get(tile.pos.X, tile.pos.Y - 1) == null) {
-            gameState.openPlaces.Add((tile.pos.X, tile.pos.Y - 1));
-            emptyPlaceBuffer.Add((tile.pos.X, tile.pos.Y - 1));
-        }
-        gameState.ChooseNextTile();
-        
         uiManager.nextTileRect.Texture = GD.Load<CompressedTexture2D>(gameState.nextTile.path);
         uiManager.SetLeft(gameState.tilesLeft.Count + 1);
 

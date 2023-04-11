@@ -107,6 +107,10 @@ public partial class UIManager : Control {
     public async void SetLeft(int left) {
         tilesLeftLabel.Text = "Tiles left: " + left.ToString();
     }
+    
+    public async void SetScore(int score) {
+        scoreLabel.Text = "Score: " + score.ToString();
+    }
 
     public async void GameOver() {
         muteMusicButton.Disabled = true;
