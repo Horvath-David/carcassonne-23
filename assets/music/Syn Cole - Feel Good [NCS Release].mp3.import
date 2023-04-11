@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cjshpphtxs332"
+path="res://.godot/imported/Syn Cole - Feel Good [NCS Release].mp3-8646cb1e9ddc2e701c73c444979cc1c9.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Syn Cole - Feel Good [NCS Release].mp3"
+dest_files=["res://.godot/imported/Syn Cole - Feel Good [NCS Release].mp3-8646cb1e9ddc2e701c73c444979cc1c9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

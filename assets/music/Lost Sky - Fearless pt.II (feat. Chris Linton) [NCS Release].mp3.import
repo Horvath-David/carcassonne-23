@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b4lkg5y0mm1dj"
+path="res://.godot/imported/Lost Sky - Fearless pt.II (feat. Chris Linton) [NCS Release].mp3-0383a7fbdd2572eb6823bc39e3fc4832.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Lost Sky - Fearless pt.II (feat. Chris Linton) [NCS Release].mp3"
+dest_files=["res://.godot/imported/Lost Sky - Fearless pt.II (feat. Chris Linton) [NCS Release].mp3-0383a7fbdd2572eb6823bc39e3fc4832.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
