@@ -48,10 +48,7 @@ public partial class UIManager : Control {
     public int index;
 
 
-    public async override void _Ready() {
-        nowPlayingAnim = true;
-        nextMusic.Disabled = true;
-        nextMusic.Text = "Wait";
+    public async void StartMusic() {
         // selects the first music randomly
         int index = random.Next(musicList.Count);
         previousIndex = index;
@@ -59,6 +56,9 @@ public partial class UIManager : Control {
         GD.Print(selectedString);
         musicPlayer.Stream = GD.Load<AudioStream>("res://assets/music/"+selectedString+".mp3");
         musicPlayer.Play(); 
+        nowPlayingAnim = true;
+        nextMusic.Disabled = true;
+        nextMusic.Text = "Wait";
         muteMusicButton.ButtonPressed = true;
         waitLabel.Hide();
         nowPlaying.Text = selectedString;
@@ -76,7 +76,7 @@ public partial class UIManager : Control {
         nextMusic.Text = "Next";
         nowPlayingAnim = false;
     }
-
+    
     public async void ChangeMusic() {
         nowPlayingAnim = true;
         musicPlayer.Stop();

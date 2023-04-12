@@ -192,10 +192,10 @@ text = "X"
 
 [node name="ColorPicker" type="ColorPicker" parent="Setup/ColorPicker"]
 layout_mode = 0
-offset_left = 68.0
-offset_top = 39.0
-offset_right = 334.0
-offset_bottom = 607.0
+offset_left = 164.0
+offset_top = 87.0
+offset_right = 382.0
+offset_bottom = 655.0
 alignment = 1
 edit_alpha = false
 picker_shape = 2
