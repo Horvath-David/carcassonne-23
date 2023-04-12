@@ -1,0 +1,94 @@
+body{
+    background-color: rgb(24, 24, 24);
+    color: rgb(163, 163, 163);
+    width: 100%;
+    overflow-x: hidden;
+}
+h1{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.center {
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+.error-image{
+	width: 40vw;
+}
+h2{
+    text-align: center;
+}
+.dropdown-menu{
+    background-color: rgb(100, 100, 100);
+}
+.bg-light{
+    color: rgb(163, 163, 163);
+    background-color: rgb(73, 73, 73);
+}
+nav li a{
+    color: rgb(163, 163, 163) !important;
+}
+.navbar-brand{
+    color: rgb(163, 163, 163) !important;
+}
+.dropdown-item{
+    color: rgb(163, 163, 163) !important;
+}
+.dropdown-menu{
+    background-color: rgb(24, 24, 24);
+}
+.dropdown-item:hover{
+    color: rgb(183, 183, 183) !important;
+    background-color: rgb(44, 44, 44);
+}
+.disabled{
+    text-decoration: line-through;
+    color: rgb(100, 100, 100) !important;
+}
+.navbar-toggler{
+    color: rgb(163, 163, 163) !important;
+    border: none !important;
+}
+.navbar-toggler-button:enabled{
+    border: none !important;
+}
+.navbar-toggler-button{
+    margin-top: auto;
+    margin-bottom: auto;
+    color: rgb(163, 163, 163) !important;
+}
+footer{
+    text-align: center;
+    background-color: rgb(33, 37, 41);
+}
+
+
+.snowflake {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(white, white); /* Workaround for Chromium's selective color inversion */
+    border-radius: 50%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #202020;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(73, 73, 73)
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
