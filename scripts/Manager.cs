@@ -123,7 +123,17 @@ public partial class Manager : Node2D {
         preview = true;
         UpdateColors();
         pendingAreas = new List<ScoreAreaController>();
-        uiManager.SetScore(gameState.players[0].score);
+        uiManager.SetScore(gameState.players[0].score, 1);
+        if (gameState.players.Count > 1) uiManager.SetScore(gameState.players[1].score, 2);
+        if (gameState.players.Count > 2) uiManager.SetScore(gameState.players[2].score, 3);
+        if (gameState.players.Count > 3) uiManager.SetScore(gameState.players[3].score, 4);
+        
+        uiManager.SetMeeps(gameState.players[0].meeples, 1);
+        if (gameState.players.Count > 1) uiManager.SetMeeps(gameState.players[1].meeples, 2);
+        if (gameState.players.Count > 2) uiManager.SetMeeps(gameState.players[2].meeples, 3);
+        if (gameState.players.Count > 3) uiManager.SetMeeps(gameState.players[3].meeples, 4);
+        
+        NextPlayer();
     }
 
     public static void SkipMeeple() {
@@ -132,7 +142,23 @@ public partial class Manager : Node2D {
         preview = true;
         UpdateColors();
         pendingAreas = new List<ScoreAreaController>();
-        uiManager.SetScore(gameState.players[0].score);
+        
+        uiManager.SetScore(gameState.players[0].score, 1);
+        if (gameState.players.Count > 1) uiManager.SetScore(gameState.players[1].score, 2);
+        if (gameState.players.Count > 2) uiManager.SetScore(gameState.players[2].score, 3);
+        if (gameState.players.Count > 3) uiManager.SetScore(gameState.players[3].score, 4);
+        
+        uiManager.SetMeeps(gameState.players[0].meeples, 1);
+        if (gameState.players.Count > 1) uiManager.SetMeeps(gameState.players[1].meeples, 2);
+        if (gameState.players.Count > 2) uiManager.SetMeeps(gameState.players[2].meeples, 3);
+        if (gameState.players.Count > 3) uiManager.SetMeeps(gameState.players[3].meeples, 4);
+        
+        NextPlayer();
+    }
+
+    public static void NextPlayer() {
+        gameState.NextPlayer();
+        uiManager.ChangePlayer(gameState.currentPlayer + 1);
     }
 
     public static void UpdateColors() {
@@ -146,15 +172,15 @@ public partial class Manager : Node2D {
                 color = Colors.Transparent;
             }
             if (region.meeples.Count == 1) {
-                color = new Color(gameState.players[region.meeples.Keys.First()].color, 0.5f);
+                color = new Color(gameState.players[region.meeples.Keys.First()].color, 0.65f);
             }
             else if (region.meeples.Count > 1) {
                 var sorted = region.meeples.OrderByDescending(e => e.Value).ToList();
                 if (sorted[0].Value == sorted[1].Value) {
-                    color = new Color(Colors.SlateGray, 0.5f);
+                    color = new Color(Colors.SlateGray, 0.65f);
                 }
                 else {
-                    color = new Color(gameState.players[sorted[0].Key].color, 0.5f);
+                    color = new Color(gameState.players[sorted[0].Key].color, 0.65f);
                 }
             }
             

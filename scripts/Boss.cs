@@ -96,14 +96,21 @@ public partial class Boss : Node {
             data.name = node.GetNode<LineEdit>("LineEdit").Text;
             data.color = node.GetNode<ColorRect>("ColorRect").Color;
             Manager.gameState.players.Add(data);
+
+            var scoreNode = GetNode<ColorRect>("Main/UIScene/Scores/Player" + i);
+            scoreNode.Show();
+            scoreNode.GetNode<ColorRect>("ColorRect").Color = data.color;
+            scoreNode.GetNode<Label>("Name").Text = data.name;
+            
+            if (lite) {
+                scoreNode.GetNode<Label>("Name").Position += new Vector2(0, 7);
+                scoreNode.GetNode<Label>("Meep").Hide();
+            }
+            Manager.uiManager.ChangePlayer(1);
         }
 
         Manager.gameState.lite = lite;
 
-        foreach (var player in Manager.gameState.players) {
-            GD.Print(player.name + " " + player.color.ToHtml());
-        }
-        
         GetNode<Control>("Setup").QueueFree();
     }
 }

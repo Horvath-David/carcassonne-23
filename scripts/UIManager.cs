@@ -128,12 +128,25 @@ public partial class UIManager : Control {
         }
     }
 
-    public async void SetLeft(int left) {
+    public void SetLeft(int left) {
         tilesLeftLabel.Text = "Tiles left: " + left.ToString();
     }
     
-    public async void SetScore(int score) {
-        scoreLabel.Text = "Score: " + score.ToString();
+    public void SetScore(int score, int player) {
+        GetNode<Label>("Scores/Player" + player + "/Score").Text = score.ToString();
+    }
+
+    public void SetMeeps(int meeps, int player) {
+        GetNode<Label>("Scores/Player" + player + "/Meep").Text = meeps + " meeples";
+    }
+
+    public void ChangePlayer(int player) {
+        GetNode<ColorRect>("Scores/Player1/ColorRect").Scale = new Vector2(0.72f, 0.72f);
+        GetNode<ColorRect>("Scores/Player2/ColorRect").Scale = new Vector2(0.72f, 0.72f);
+        GetNode<ColorRect>("Scores/Player3/ColorRect").Scale = new Vector2(0.72f, 0.72f);
+        GetNode<ColorRect>("Scores/Player4/ColorRect").Scale = new Vector2(0.72f, 0.72f);
+        
+        GetNode<ColorRect>("Scores/Player" + player + "/ColorRect").Scale = new Vector2(1f, 1f);
     }
 
     public async void GameOver() {

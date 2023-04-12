@@ -60,7 +60,10 @@ public class GameState {
     }
 
     public void NextPlayer() {
-        throw new NotImplementedException();
+        if (currentPlayer < players.Count - 1) currentPlayer++;
+        else currentPlayer = 0;
+        
+        GD.Print(currentPlayer);
     }
 
     public ScoreRegion GetRegion(ScoreArea area) {
@@ -138,6 +141,7 @@ public class GameState {
     }
 
     public void PlaceMeeple(int X, int Y, int idx) {
+        if (players[currentPlayer].meeples < 1) return;
         players[currentPlayer].meeples -= 1;
         var area = board.Get(X, Y).areas[idx];
         var regionIdx = regions.IndexOf(GetRegion(area));
@@ -152,7 +156,6 @@ public class GameState {
 
     public void CheckComplete() {
         foreach (var region in regions) {
-            GD.Print(region.IsComplete() + " " + region.areas.Count);
             if (!region.IsComplete()) continue;
 
             if (region.meeples.Count == 0) {
@@ -162,7 +165,9 @@ public class GameState {
             if (region.meeples.Count == 1) {
                 GD.Print("meeple from one");
                 players[region.meeples.Keys.ToList()[0]].score += region.GetScore(lite);
+                players[region.meeples.Keys.ToList()[0]].meeples += region.meeples.Values.ToList()[0];
                 region.meeples = new Dictionary<int, int>();
+                
             }
             if (region.meeples.Count > 1) {
                 GD.Print("meeple from more");
@@ -174,6 +179,10 @@ public class GameState {
                 }
                 else {
                     players[sorted[0].Key].score += region.GetScore(lite);
+                }
+
+                foreach (var e in sorted) {
+                    players[e.Key].meeples += e.Value;
                 }
                 region.meeples = new Dictionary<int, int>();
             }

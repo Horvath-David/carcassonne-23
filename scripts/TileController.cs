@@ -21,7 +21,7 @@ public partial class TileController : Sprite2D, ClickableArea {
 
         foreach (var controller in areaControllers.FindAll(a => Manager.gameState.GetRegion(a.scoreArea).canPlaceMeeples)) {
             if (Manager.gameState.lite) break;
-            controller.poly.Color = new Color(Colors.Black, 0.65f);
+            controller.poly.Color = new Color(r:0.3f, g:0.3f, b:0.3f, a:0.75f);
             Manager.pendingAreas.Add(controller);
         }
 
