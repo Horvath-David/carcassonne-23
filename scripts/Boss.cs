@@ -13,6 +13,9 @@ public partial class Boss : Node {
     [Export] public Button soloButton;
     [Export] public Button normalButton;
 
+    public UIManager uiManager;
+    public static Node main;
+
     private int players = 1;
     private bool lite = true;
     
@@ -21,7 +24,8 @@ public partial class Boss : Node {
     }
 
     public override void _Ready() {
-        Manager.uiManager.MuteMusic(false);
+        main = GetNode("Main");
+        uiManager = main.GetNode("UIScene") as UIManager;
     }
 
     public void DeletePlayer(int player) {
@@ -112,5 +116,6 @@ public partial class Boss : Node {
         Manager.gameState.lite = lite;
 
         GetNode<Control>("Setup").QueueFree();
+        uiManager.StartMusic();
     }
 }
