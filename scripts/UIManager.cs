@@ -15,6 +15,7 @@ public partial class UIManager : Control {
     [Export] public Control nowPlayingFrame;
     [Export] public Label nowPlaying;
     [Export] public Button nextMusic;
+    [Export] public Control placeMeeple;
 
     public int Volume = 0;
     public bool gameEnded = false;
@@ -159,6 +160,10 @@ public partial class UIManager : Control {
             await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
         }
         waitLabel.Hide();
+    }
+
+    public void SkipMeeple() {
+        Manager.SkipMeeple();
     }
 
     public void Exit() {

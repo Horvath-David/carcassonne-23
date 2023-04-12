@@ -12,7 +12,7 @@ public partial class Manager : Node2D {
     public GamePhase phase = GamePhase.Running;
     public static GameState gameState = new GameState();
     public static Dictionary<(int X, int Y), EmptyFrame> emptyFrames = new Dictionary<(int X, int Y), EmptyFrame>();
-    
+
     public static List<Tile> addBuffer = new List<Tile>();
     public static List<(int X, int Y)> emptyPlaceBuffer = new List<(int X, int Y)>();
 
@@ -21,6 +21,7 @@ public partial class Manager : Node2D {
 
     public static int rotation = 0;
     public static bool shouldCheck = false;
+    public static bool preview = true;
 
     public static PackedScene scoreArea = GD.Load<PackedScene>("res://prefabs/score_area.tscn");
     PackedScene tilePrefab = GD.Load<PackedScene>("res://prefabs/tile.tscn");
@@ -28,15 +29,16 @@ public partial class Manager : Node2D {
 
     [Export] public Node2D boardNode;
     public static UIManager uiManager;
-    
+
     public override void _Ready() {
         uiManager = GetParent().GetNode("UIScene") as UIManager;
 
         gameState.tilesLeft = new List<TileData>(Tiles.all);
         gameState.nextTile = Tiles.st;
         gameState.tilesLeft.Remove(Tiles.st);
-        
+
         PlaceTile(new Tile(0, 0, gameState.nextTile));
+        
     }
 
     public override void _Process(double delta) {
@@ -64,8 +66,10 @@ public partial class Manager : Node2D {
             if (tile.type == Tiles.st) instance.canPlaceMeeple = false;
             boardNode.AddChild(instance);
         }
+
         addBuffer = new List<Tile>();
     }
+
     private void ApplyEmptyPlaceBuffer() {
         foreach ((int X, int Y) emptyPlace in emptyPlaceBuffer) {
             if (emptyFrames.GetValueOrDefault(emptyPlace, null) != null) continue;
@@ -76,12 +80,14 @@ public partial class Manager : Node2D {
             boardNode.AddChild(instance);
             emptyFrames.Add(emptyPlace, instance);
         }
+
         if (emptyPlaceBuffer.Count > 0 || shouldCheck) {
             HideFrames();
             shouldCheck = false;
             var score = gameState.regions.Select(r => r.GetScore(true)).Aggregate(0, (a, b) => a + b);
             uiManager.SetScore(score);
         }
+
         emptyPlaceBuffer = new List<(int X, int Y)>();
     }
 
@@ -96,6 +102,11 @@ public partial class Manager : Node2D {
         if (sides.down) emptyPlaceBuffer.Add((tile.pos.X, tile.pos.Y - 1));
         if (sides.left) emptyPlaceBuffer.Add((tile.pos.X - 1, tile.pos.Y));
 
+        if (!gameState.lite && tile.type != Tiles.st) {
+            uiManager.placeMeeple.Show();
+            preview = false;
+        }
+
         uiManager.nextTileRect.Texture = GD.Load<CompressedTexture2D>(gameState.nextTile.path);
         uiManager.SetLeft(gameState.tilesLeft.Count + 1);
 
@@ -106,6 +117,12 @@ public partial class Manager : Node2D {
 
     public static void PlaceMeeple(int x, int y, int idx) {
         gameState.PlaceMeeple(x, y, idx);
+        preview = true;
+    }
+
+    public static void SkipMeeple() {
+        uiManager.placeMeeple.Hide();
+        preview = true;
     }
 
     public static void ChangeRotation(int rotation = -1) {

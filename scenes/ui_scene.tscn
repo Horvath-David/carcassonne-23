@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://qh0nhssqlu3h"]
+[gd_scene load_steps=4 format=3 uid="uid://qh0nhssqlu3h"]
 
 [ext_resource type="Script" path="res://scripts/UIManager.cs" id="1_foagf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_phq8c"]
 font_size = 19
 
-[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect", "musicPlayer", "muteMusicButton", "waitLabel", "gameOverLabel", "musicVolPopUp", "musicVolume", "nowPlayingFrame", "nowPlaying", "nextMusic")]
+[sub_resource type="Theme" id="Theme_aibjk"]
+Button/font_sizes/font_size = 13
+
+[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect", "musicPlayer", "muteMusicButton", "waitLabel", "gameOverLabel", "musicVolPopUp", "musicVolume", "nowPlayingFrame", "nowPlaying", "nextMusic", "placeMeeple")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +29,7 @@ musicVolume = NodePath("MusicVolume/HSlider")
 nowPlayingFrame = NodePath("NowPlaying")
 nowPlaying = NodePath("NowPlaying/CurrentlyPlaying")
 nextMusic = NodePath("MusicVolume/Next")
+placeMeeple = NodePath("PlaceMeeple")
 
 [node name="Frame" type="Control" parent="."]
 anchors_preset = 0
@@ -240,6 +244,37 @@ offset_bottom = 43.0
 theme_override_font_sizes/font_size = 23
 text = "Next"
 
+[node name="PlaceMeeple" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="PlaceMeeple"]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 79.0
+offset_right = 687.0
+offset_bottom = 119.0
+color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[node name="Label" type="Label" parent="PlaceMeeple/ColorRect"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 170.0
+offset_bottom = 40.0
+text = "Place a meeple, or"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PlaceMeeple/ColorRect"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 6.0
+offset_right = 217.0
+offset_bottom = 34.0
+theme = SubResource("Theme_aibjk")
+text = "skip"
+
 [connection signal="pressed" from="BackButton" to="." method="Exit"]
 [connection signal="mouse_entered" from="MutePupupToggle" to="." method="ShowMusic"]
 [connection signal="mouse_exited" from="MutePupupToggle" to="." method="HideMusic"]
@@ -248,3 +283,4 @@ text = "Next"
 [connection signal="drag_ended" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
 [connection signal="toggled" from="MusicVolume/Button" to="." method="MuteMusic"]
 [connection signal="pressed" from="MusicVolume/Next" to="." method="ChangeMusic"]
+[connection signal="pressed" from="PlaceMeeple/ColorRect/Button" to="." method="SkipMeeple"]
