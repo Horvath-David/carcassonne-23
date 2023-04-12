@@ -19,6 +19,8 @@ public partial class Manager : Node2D {
     public static Dictionary<(int X, int Y, int idx), ScoreAreaController> areaControllers =
         new Dictionary<(int X, int Y, int idx), ScoreAreaController>();
 
+    public static List<ScoreAreaController> pendingAreas = new List<ScoreAreaController>();
+
     public static int rotation = 0;
     public static bool shouldCheck = false;
     public static bool preview = true;
@@ -47,7 +49,7 @@ public partial class Manager : Node2D {
                 AppyAddBuffer();
                 ApplyEmptyPlaceBuffer();
 
-                if (gameState.gameOver) EndGame(gameState.normalGameOver);
+                if (gameState.gameOver && preview) EndGame(gameState.normalGameOver);
                 break;
             }
             case GamePhase.Ended: {
@@ -85,7 +87,7 @@ public partial class Manager : Node2D {
             HideFrames();
             shouldCheck = false;
             var score = gameState.regions.Select(r => r.GetScore(true)).Aggregate(0, (a, b) => a + b);
-            uiManager.SetScore(score);
+            //uiManager.SetScore(score);
         }
 
         emptyPlaceBuffer = new List<(int X, int Y)>();
@@ -116,13 +118,51 @@ public partial class Manager : Node2D {
     }
 
     public static void PlaceMeeple(int x, int y, int idx) {
+        uiManager.placeMeeple.Hide();
         gameState.PlaceMeeple(x, y, idx);
         preview = true;
+        UpdateColors();
+        pendingAreas = new List<ScoreAreaController>();
+        uiManager.SetScore(gameState.players[0].score);
     }
 
     public static void SkipMeeple() {
         uiManager.placeMeeple.Hide();
+        gameState.CheckComplete();
         preview = true;
+        UpdateColors();
+        pendingAreas = new List<ScoreAreaController>();
+        uiManager.SetScore(gameState.players[0].score);
+    }
+
+    public static void UpdateColors() {
+        foreach (var area in pendingAreas) {
+            area.poly.Color = Colors.Transparent;
+        }
+
+        foreach (var region in gameState.regions) {
+            Color color = Colors.Transparent;
+            if (region.meeples.Count == 0) {
+                color = Colors.Transparent;
+            }
+            if (region.meeples.Count == 1) {
+                color = new Color(gameState.players[region.meeples.Keys.First()].color, 0.5f);
+            }
+            else if (region.meeples.Count > 1) {
+                var sorted = region.meeples.OrderByDescending(e => e.Value).ToList();
+                if (sorted[0].Value == sorted[1].Value) {
+                    color = new Color(Colors.SlateGray, 0.5f);
+                }
+                else {
+                    color = new Color(gameState.players[sorted[0].Key].color, 0.5f);
+                }
+            }
+            
+            foreach (var area in areaControllers.Values) {
+                if (region.areas.Find(a => a == area.scoreArea) != null) area.poly.Color = color;
+            }
+
+        }
     }
 
     public static void ChangeRotation(int rotation = -1) {

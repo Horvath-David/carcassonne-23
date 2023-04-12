@@ -23,9 +23,6 @@ public abstract class ScoreRegion {
             case AreaType.City:
                 return new CityRegion(state);
                 break;
-            case AreaType.ShieldCity:
-                return new CityRegion(state);
-                break;
             case AreaType.Monastery:
                 return new MonasteryRegion(state);
                 break;
@@ -52,8 +49,7 @@ public abstract class ScoreRegion {
 
     public bool Connects(ScoreArea area) {
         var type = area.type;
-        if (type == AreaType.ShieldCity) type = AreaType.City;
-        
+
         if (areas.Find(a => a.type == type && a.pos == (area.pos.X + 1, area.pos.Y) && a.sides.left && area.sides.right) != null) {
             return true;
         }

@@ -141,7 +141,6 @@ public partial class UIManager : Control {
         musicVolume.Editable = false;
         nextMusic.Disabled = true;
         gameEnded = true;
-        waitLabel.Show();
         for (int i = Volume * (-1); i <= 40; i++) {
             musicPlayer.VolumeDb = i * -1;
             await ToSignal(GetTree().CreateTimer(0.00005f), "timeout");
@@ -152,14 +151,11 @@ public partial class UIManager : Control {
         musicPlayer.VolumeDb = 0;
         musicPlayer.Play();
         gameOverLabel.Show();
-        waitLabel.Hide();
         await ToSignal(GetTree().CreateTimer(30.0f), "timeout");
-        waitLabel.Show();
         for (int i = 0; i <= 40; i++) {
             musicPlayer.VolumeDb = i * (-1);
             await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
         }
-        waitLabel.Hide();
     }
 
     public void SkipMeeple() {

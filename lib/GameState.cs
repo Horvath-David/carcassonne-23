@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class GameState {
@@ -89,13 +90,11 @@ public class GameState {
             result.Item4 = true;
         }
         ChooseNextTile();
-
-        GD.Print("-----");
+        
         foreach (var area in tile.areas) {
             area.Rotate(tile.rotation);
             var connects = new List<ScoreRegion>(regions.FindAll(r => r.Connects(area)));
             
-            GD.Print(area.type + " " + connects.Count);
             while (connects.Count > 1) {
                 int i1 = 0; 
                 int i2 = 1;
@@ -139,7 +138,46 @@ public class GameState {
     }
 
     public void PlaceMeeple(int X, int Y, int idx) {
-        throw new NotImplementedException();
+        players[currentPlayer].meeples -= 1;
+        var area = board.Get(X, Y).areas[idx];
+        var regionIdx = regions.IndexOf(GetRegion(area));
+        try {
+            regions[regionIdx].meeples[currentPlayer] += 1;
+        }
+        catch (KeyNotFoundException e) {
+            regions[regionIdx].meeples[currentPlayer] = 1;
+        }
+        CheckComplete();
+    }
+
+    public void CheckComplete() {
+        foreach (var region in regions) {
+            GD.Print(region.IsComplete() + " " + region.areas.Count);
+            if (!region.IsComplete()) continue;
+
+            if (region.meeples.Count == 0) {
+                GD.Print("no meeple");
+                continue;
+            }
+            if (region.meeples.Count == 1) {
+                GD.Print("meeple from one");
+                players[region.meeples.Keys.ToList()[0]].score += region.GetScore(lite);
+                region.meeples = new Dictionary<int, int>();
+            }
+            if (region.meeples.Count > 1) {
+                GD.Print("meeple from more");
+                var sorted = region.meeples.OrderByDescending(e => e.Value).ToList();
+                if (sorted[0].Value == sorted[1].Value) {
+                    foreach (var e in sorted.FindAll(x => x.Value == sorted[0].Value)) {
+                        players[e.Key].score += region.GetScore(lite);
+                    }
+                }
+                else {
+                    players[sorted[0].Key].score += region.GetScore(lite);
+                }
+                region.meeples = new Dictionary<int, int>();
+            }
+        }
     }
 
     public void ApplyMove(Move move) {

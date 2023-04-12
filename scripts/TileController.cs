@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 public partial class TileController : Sprite2D, ClickableArea {
     public Tile tile;
@@ -14,12 +15,14 @@ public partial class TileController : Sprite2D, ClickableArea {
             instance.pos = tile.pos;
             instance.index = tile.areas.IndexOf(area);
             areaControllers.Add(instance);
+            Manager.areaControllers.Add((tile.pos.X, tile.pos.Y, tile.areas.IndexOf(area)), instance);
             AddChild(instance);
         }
 
         foreach (var controller in areaControllers.FindAll(a => Manager.gameState.GetRegion(a.scoreArea).canPlaceMeeples)) {
             if (Manager.gameState.lite) break;
-            controller.poly.Color = new Color(Colors.Red, 0.5f);
+            controller.poly.Color = new Color(Colors.Black, 0.65f);
+            Manager.pendingAreas.Add(controller);
         }
 
         if (!canPlaceMeeple) {
@@ -36,7 +39,7 @@ public partial class TileController : Sprite2D, ClickableArea {
     public void PlaceMeeple(int index) {
         if (!canPlaceMeeple) return;
 
-        // do stuff
+        Manager.PlaceMeeple(tile.pos.X, tile.pos.Y, index);
 
         Manager.gameState.GetRegion(tile.areas[index]).canPlaceMeeples = false;
         canPlaceMeeple = false;
