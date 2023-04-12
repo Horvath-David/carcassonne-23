@@ -49,6 +49,10 @@ public partial class UIManager : Control {
 
 
     public async override void _Ready() {
+        
+    }
+
+    public async void StartMusic() {
         nowPlayingAnim = true;
         nextMusic.Disabled = true;
         nextMusic.Text = "Wait";
@@ -76,7 +80,6 @@ public partial class UIManager : Control {
         nextMusic.Text = "Next";
         nowPlayingAnim = false;
     }
-
     public async void ChangeMusic() {
         nowPlayingAnim = true;
         musicPlayer.Stop();

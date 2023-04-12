@@ -307,6 +307,7 @@ offset_bottom = 37.0
 text = "Player 1"
 
 [node name="Meep" type="Label" parent="Scores/Player1"]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 30.0
 offset_right = 161.0
@@ -315,6 +316,7 @@ theme = SubResource("Theme_wm30q")
 text = "7 meeples"
 
 [node name="Score" type="Label" parent="Scores/Player1"]
+layout_mode = 0
 offset_left = 146.0
 offset_top = 10.0
 offset_right = 198.0
@@ -327,6 +329,7 @@ vertical_alignment = 1
 
 [node name="Player2" type="ColorRect" parent="Scores"]
 visible = false
+layout_mode = 0
 offset_top = 156.0
 offset_right = 206.0
 offset_bottom = 216.0
@@ -349,6 +352,7 @@ offset_bottom = 37.0
 text = "Player 2"
 
 [node name="Meep" type="Label" parent="Scores/Player2"]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 30.0
 offset_right = 161.0
@@ -357,6 +361,7 @@ theme = SubResource("Theme_wm30q")
 text = "7 meeples"
 
 [node name="Score" type="Label" parent="Scores/Player2"]
+layout_mode = 0
 offset_left = 146.0
 offset_top = 10.0
 offset_right = 198.0
@@ -369,6 +374,7 @@ vertical_alignment = 1
 
 [node name="Player3" type="ColorRect" parent="Scores"]
 visible = false
+layout_mode = 0
 offset_top = 96.0
 offset_right = 206.0
 offset_bottom = 156.0
@@ -391,6 +397,7 @@ offset_bottom = 37.0
 text = "Player 3"
 
 [node name="Meep" type="Label" parent="Scores/Player3"]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 30.0
 offset_right = 161.0
@@ -399,6 +406,7 @@ theme = SubResource("Theme_wm30q")
 text = "7 meeples"
 
 [node name="Score" type="Label" parent="Scores/Player3"]
+layout_mode = 0
 offset_left = 146.0
 offset_top = 10.0
 offset_right = 198.0
@@ -411,6 +419,7 @@ vertical_alignment = 1
 
 [node name="Player4" type="ColorRect" parent="Scores"]
 visible = false
+layout_mode = 0
 offset_top = 36.0
 offset_right = 206.0
 offset_bottom = 96.0
@@ -433,6 +442,7 @@ offset_bottom = 37.0
 text = "Player 4"
 
 [node name="Meep" type="Label" parent="Scores/Player4"]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 30.0
 offset_right = 161.0
@@ -441,6 +451,7 @@ theme = SubResource("Theme_wm30q")
 text = "7 meeples"
 
 [node name="Score" type="Label" parent="Scores/Player4"]
+layout_mode = 0
 offset_left = 146.0
 offset_top = 10.0
 offset_right = 198.0
