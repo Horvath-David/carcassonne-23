@@ -20,7 +20,7 @@ variation_embolden = 0.74
 font = SubResource("FontVariation_2wsoa")
 font_size = 25
 
-[node name="UIScene" type="Control" node_paths=PackedStringArray("scoreLabel", "tilesLeftLabel", "nextTileRect", "musicPlayer", "muteMusicButton", "waitLabel", "gameOverLabel", "musicVolPopUp", "musicVolume", "nowPlayingFrame", "nowPlaying", "nextMusic", "placeMeeple")]
+[node name="UIScene" type="Control" node_paths=PackedStringArray("tilesLeftLabel", "nextTileRect", "musicPlayer", "muteMusicButton", "waitLabel", "gameOverLabel", "musicVolPopUp", "musicVolume", "nowPlayingFrame", "nowPlaying", "nextMusic", "placeMeeple")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_foagf")
-scoreLabel = NodePath("")
 tilesLeftLabel = NodePath("TilesLeft")
 nextTileRect = NodePath("NextTile")
 musicPlayer = NodePath("AudioStreamPlayer")
@@ -225,7 +224,9 @@ offset_left = 5.0
 offset_top = -2.0
 offset_right = 143.0
 offset_bottom = 47.0
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 0.25
 
 [node name="Button" type="Button" parent="MusicVolume"]
 layout_mode = 0
@@ -467,7 +468,7 @@ vertical_alignment = 1
 [connection signal="mouse_exited" from="MutePupupToggle" to="." method="HideMusic"]
 [connection signal="toggled" from="MutePupupToggle" to="." method="MusicPopup"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="ChangeMusic"]
-[connection signal="drag_ended" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
+[connection signal="value_changed" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
 [connection signal="toggled" from="MusicVolume/Button" to="." method="MuteMusic"]
 [connection signal="pressed" from="MusicVolume/Next" to="." method="ChangeMusic"]
 [connection signal="pressed" from="PlaceMeeple/ColorRect/Button" to="." method="SkipMeeple"]

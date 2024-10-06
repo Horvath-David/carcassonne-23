@@ -12,6 +12,7 @@ public partial class MainMenu : Control {
     
     public override void _Ready() {
         muteMusicButton.ButtonPressed = true;
+        ChangeMusicVol((float)musicVolume.Value);
     }
 	async public void Start() {
 		startButton.Disabled = true;
@@ -48,15 +49,7 @@ public partial class MainMenu : Control {
 		}
 	}
 
-	public void ChangeMusicVol(bool value_changed) {
-		double vol = musicVolume.Value;
-		GD.Print(vol);
-		if ((float)vol == 0) {
-			musicPlayer.VolumeDb = -40;
-			Volume = -40;
-			return;
-		}
-		musicPlayer.VolumeDb = ((float) vol - 100) / 3;
-		Volume = ((int)vol - 100) / 3;
+	public void ChangeMusicVol(float vol) {
+		musicPlayer.VolumeDb = (float)(10.0 * Math.Log(vol));
 	}
 }

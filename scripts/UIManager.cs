@@ -49,7 +49,7 @@ public partial class UIManager : Control {
 
 
     public async override void _Ready() {
-        
+        ChangeMusicVol((float)musicVolume.Value);
     }
 
     public async void StartMusic() {
@@ -208,15 +208,7 @@ public partial class UIManager : Control {
         }
     }
 
-    public void ChangeMusicVol(bool value_changed) {
-        double vol = musicVolume.Value;
-        GD.Print(vol);
-        if ((float)vol == 0) {
-            musicPlayer.VolumeDb = -40;
-            Volume = -40;
-            return;
-        }
-        musicPlayer.VolumeDb = ((float) vol - 100) / 3;
-        Volume = ((int)vol - 100) / 3;
+    public void ChangeMusicVol(float vol) {
+        musicPlayer.VolumeDb = (float)(10.0 * Math.Log(vol));
     }
 }

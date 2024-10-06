@@ -129,7 +129,9 @@ offset_left = 5.0
 offset_top = 1.0
 offset_right = 143.0
 offset_bottom = 50.0
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 0.25
 
 [node name="Button" type="Button" parent="MusicVolume"]
 layout_mode = 0
@@ -144,5 +146,5 @@ text = "Stop"
 [connection signal="pressed" from="Button" to="." method="Start"]
 [connection signal="toggled" from="MusicPopup" to="." method="MusicPopup"]
 [connection signal="pressed" from="BackButton" to="." method="Exit"]
-[connection signal="drag_ended" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
+[connection signal="value_changed" from="MusicVolume/HSlider" to="." method="ChangeMusicVol"]
 [connection signal="toggled" from="MusicVolume/Button" to="." method="MuteMusic"]
