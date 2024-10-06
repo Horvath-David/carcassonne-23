@@ -17,8 +17,8 @@ public partial class MainMenu : Control {
 	async public void Start() {
 		startButton.Disabled = true;
 		startButton.Text = "Please wait...";
-		for (int i = Volume * (-1); i < 40; i++) {
-			musicPlayer.VolumeDb = i * -1;
+		while (musicVolume.Value != 0) {
+			musicVolume.Value = (float)musicVolume.Value - 0.01f;
 			await ToSignal(GetTree().CreateTimer(0.00005f), "timeout");
 		}
 		GetTree().ChangeSceneToFile("res://scenes/main.tscn");
